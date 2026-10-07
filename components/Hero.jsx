@@ -11,24 +11,24 @@ export default function Hero() {
       <div className="container">
         <div className="hero-content">
           <div className="hero-badge">
-            <span className="badge-dot"></span> AI Solutions & Software Development
+            <span className="badge-dot"></span> Software Development Company in Aurangabad, India
           </div>
           <h1 className="hero-title">
-            <span>Code Your Vision</span>
-            <span className="highlight">With Innovation</span>
+            <span>Custom Software Development</span>
+            <span className="highlight">Company in India</span>
           </h1>
           <p className="hero-subtitle">
-            We deliver customized software solutions with expert team of developers, designers &
-            project managers. Transform your business with cutting-edge AI technology.
+            CodeLaksh builds custom software, web and mobile apps, ERP, AI and cloud solutions for businesses in India.
+            Our team of developers, designers and project managers takes you from idea to launch and stays on for support.
           </p>
           <div className="hero-buttons">
-            <a href="#contact" className="btn btn-primary">
-              Get Started <i className="fas fa-arrow-right" aria-hidden="true"></i>
+            <a href="/contact" className="btn btn-primary">
+              Discuss your project <i className="fas fa-arrow-right" aria-hidden="true"></i>
             </a>
             <a href="/erp" className="btn btn-outline">
               Explore CodeLaksh ERP
             </a>
-            <a href="#portfolio" className="btn btn-ghost">
+            <a href="/portfolio" className="btn btn-ghost">
               View Work
             </a>
           </div>

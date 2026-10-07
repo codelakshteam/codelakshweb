@@ -7,13 +7,14 @@ import ThemeToggle from '@/components/ThemeToggle';
 import { PLAY_STORE_URL } from '@/components/erpData';
 
 // `section` is the id of the matching block on the home page, used to highlight the link while scrolling there.
+// Every link is a real, crawlable page URL.
 const navLinks = [
-  { href: '/#home', label: 'Home', section: 'home' },
-  { href: '/#about', label: 'About', section: 'about' },
-  { href: '/#services', label: 'Services', section: 'services' },
+  { href: '/', label: 'Home', section: 'home' },
+  { href: '/about', label: 'About', section: 'about' },
+  { href: '/services', label: 'Services', section: 'services' },
   { href: '/erp', label: 'CodeLaksh ERP', section: 'erp' },
-  { href: '/#portfolio', label: 'Portfolio', section: 'portfolio' },
-  { href: '/#contact', label: 'Contact', section: 'contact' },
+  { href: '/portfolio', label: 'Portfolio', section: 'portfolio' },
+  { href: '/contact', label: 'Contact', section: 'contact' },
 ];
 
 // Every block on the home page, in page order. The Kidodom block has no menu item of its own.
@@ -47,8 +48,9 @@ export default function Header() {
   }, [onHome]);
 
   const isActive = (link) => {
-    if (link.href === '/erp') return pathname.startsWith('/erp') || (onHome && activeSection === 'erp');
-    return onHome && activeSection === link.section;
+    if (onHome) return activeSection === link.section;
+    if (link.href === '/') return false;
+    return pathname === link.href || pathname.startsWith(`${link.href}/`);
   };
 
   return (
@@ -57,8 +59,8 @@ export default function Header() {
       <div className="container">
         <nav className="navbar">
           <a href="/" className="logo">
-            <Image className="logo-img-dark" src="/logo-white.png" alt="CodeLaksh logo" width={36} height={29} priority />
-            <Image className="logo-img-light" src="/logo.png" alt="" width={36} height={31} priority />
+            <Image className="logo-img-dark" src="/logo-white-header.png" alt="CodeLaksh logo" width={36} height={29} priority />
+            <Image className="logo-img-light" src="/logo-header.png" alt="" width={36} height={31} priority />
             <span>CodeLaksh</span>
           </a>
           <ul className={`nav-menu ${menuOpen ? 'active' : ''}`} id="navMenu">
@@ -69,7 +71,7 @@ export default function Header() {
                   <a
                     href={link.href}
                     className={active ? 'is-active' : undefined}
-                    aria-current={active ? (link.href === '/erp' && !onHome ? 'page' : 'location') : undefined}
+                    aria-current={active ? (onHome ? 'location' : 'page') : undefined}
                     onClick={() => setMenuOpen(false)}
                   >
                     {link.label}

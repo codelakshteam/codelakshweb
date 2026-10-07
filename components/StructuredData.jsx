@@ -1,106 +1,67 @@
-const siteUrl = 'https://codelaksh.in';
+import { SITE } from '@/lib/seo';
 
+// Sitewide JSON-LD: the organization and the website. Page-specific schema (Service, FAQPage, BreadcrumbList,
+// SoftwareApplication ...) is rendered by each page through components/JsonLd.jsx.
 const data = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'Organization',
-      '@id': `${siteUrl}/#organization`,
-      name: 'CodeLaksh',
-      url: siteUrl,
-      logo: `${siteUrl}/logo.png`,
+      '@type': ['Organization', 'LocalBusiness'],
+      '@id': `${SITE.url}/#organization`,
+      name: SITE.name,
+      alternateName: 'CodeLaksh Software Development',
       description:
-        'Premier AI Solutions & Software Development Company in India. Web Development, App Development, AI Chatbots, Machine Learning.',
-      email: 'codelaksh@gmail.com',
-      telephone: '+91-9834684866',
+        'CodeLaksh is a software development company in Aurangabad (Chhatrapati Sambhajinagar), Maharashtra, India, building custom software, web and mobile apps, AI, machine learning, ERP, cloud and digital marketing solutions.',
+      url: `${SITE.url}/`,
+      logo: { '@type': 'ImageObject', url: `${SITE.url}/logo.png`, width: 534, height: 467 },
+      image: `${SITE.url}/og-image.png`,
+      email: SITE.email,
+      telephone: SITE.phone,
+      foundingDate: SITE.foundingYear,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Sangram Nagar',
-        addressLocality: 'Aurangabad',
-        addressRegion: 'Maharashtra',
-        addressCountry: 'IN',
+        streetAddress: SITE.street,
+        addressLocality: SITE.city,
+        addressRegion: SITE.region,
+        addressCountry: SITE.country,
       },
+      areaServed: { '@type': 'Country', name: 'India' },
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: SITE.hours.days,
+        opens: SITE.hours.opens,
+        closes: SITE.hours.closes,
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'customer support',
+        telephone: SITE.phone,
+        email: SITE.email,
+        areaServed: 'IN',
+        availableLanguage: ['English', 'Hindi', 'Marathi'],
+      },
+      knowsAbout: [
+        'Custom software development',
+        'Web development',
+        'Mobile app development',
+        'Artificial intelligence',
+        'Machine learning',
+        'ERP software',
+        'Cloud computing',
+        'Digital marketing',
+      ],
     },
     {
       '@type': 'WebSite',
-      '@id': `${siteUrl}/#website`,
-      url: siteUrl,
-      name: 'CodeLaksh',
-      publisher: { '@id': `${siteUrl}/#organization` },
-    },
-    {
-      '@type': 'LocalBusiness',
-      '@id': `${siteUrl}/#localbusiness`,
-      name: 'CodeLaksh',
-      image: `${siteUrl}/logo.png`,
-      url: siteUrl,
-      telephone: '+91-9834684866',
-      email: 'codelaksh@gmail.com',
-      priceRange: '$$',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Sangram Nagar',
-        addressLocality: 'Aurangabad',
-        addressRegion: 'Maharashtra',
-        addressCountry: 'IN',
-      },
-      openingHoursSpecification: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        opens: '10:00',
-        closes: '19:00',
-      },
-    },
-    {
-      '@type': 'SoftwareApplication',
-      '@id': `${siteUrl}/erp#app`,
-      name: 'CodeLaksh ERP',
-      url: `${siteUrl}/erp`,
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'Android, Windows',
-      description:
-        'Billing, inventory, accounting, purchases and payments software for Indian shops, restaurants and hotels. Works offline on desktop with cloud sync and a mobile app.',
-      downloadUrl: 'https://play.google.com/store/apps/details?id=com.codelaksh.erp',
-      publisher: { '@id': `${siteUrl}/#organization` },
-      offers: [
-        { '@type': 'Offer', name: 'Starter (yearly)', price: '3499', priceCurrency: 'INR' },
-        { '@type': 'Offer', name: 'Growth (monthly)', price: '499', priceCurrency: 'INR' },
-        { '@type': 'Offer', name: 'Growth (yearly)', price: '4999', priceCurrency: 'INR' },
-        { '@type': 'Offer', name: 'Business (monthly)', price: '999', priceCurrency: 'INR' },
-        { '@type': 'Offer', name: 'Business (yearly)', price: '9999', priceCurrency: 'INR' },
-        { '@type': 'Offer', name: 'Pro (monthly)', price: '1999', priceCurrency: 'INR' },
-        { '@type': 'Offer', name: 'Pro (yearly)', price: '19999', priceCurrency: 'INR' },
-      ],
-    },
-    {
-      '@type': 'Brand',
-      '@id': 'https://kidodom.in/#brand',
-      name: 'Kidodom',
-      url: 'https://kidodom.in',
-      logo: `${siteUrl}/kidodom-icon.png`,
-      description: 'Safe, certified baby and kids products, a CodeLaksh brand. Available on the App Store and Google Play.',
-    },
-    {
-      '@type': 'MobileApplication',
-      '@id': 'https://kidodom.in/#app',
-      name: 'Kidodom',
-      url: 'https://kidodom.in',
-      applicationCategory: 'ShoppingApplication',
-      operatingSystem: 'iOS, Android',
-      installUrl: [
-        'https://apps.apple.com/ng/app/kidodom/id6804982156',
-        'https://play.google.com/store/apps/details?id=com.kidodom.web',
-      ],
-      publisher: { '@id': `${siteUrl}/#organization` },
+      '@id': `${SITE.url}/#website`,
+      url: `${SITE.url}/`,
+      name: SITE.name,
+      inLanguage: 'en-IN',
+      publisher: { '@id': `${SITE.url}/#organization` },
     },
   ],
 };
 
 export default function StructuredData() {
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
-  );
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }

@@ -1,10 +1,4 @@
-// `accent` picks the card's colour palette (see .accent-* in globals.css).
-const projects = [
-  { icon: 'fa-store', title: 'E-Commerce Platform', category: 'Web Development', accent: 'amber' },
-  { icon: 'fa-robot', title: 'AI Customer Support', category: 'Chatbot Development', accent: 'violet' },
-  { icon: 'fa-mobile-alt', title: 'Mobile App', category: 'App Development', accent: 'blue' },
-  { icon: 'fa-brain', title: 'ML Analytics Dashboard', category: 'Machine Learning', accent: 'green' },
-];
+import { projects } from '@/lib/projects';
 
 export default function Portfolio() {
   return (
@@ -13,14 +7,15 @@ export default function Portfolio() {
         <div className="section-header">
           <span className="section-subtitle">Our Work</span>
           <h2 className="section-title">
-            Featured
+            Software We Have
             <br />
-            <span className="highlight">Projects</span>
+            <span className="highlight">Built and Run</span>
           </h2>
+          <p className="erp-sub">Products designed, built and supported by CodeLaksh. Open a case study for features and technology.</p>
         </div>
-        <div className="portfolio-grid">
+        <div className="portfolio-grid is-two">
           {projects.map((project) => (
-            <div className={`portfolio-item accent-${project.accent}`} key={project.title}>
+            <a className={`portfolio-item accent-${project.accent}`} href={`/portfolio/${project.slug}`} key={project.slug}>
               <div className="portfolio-image">
                 <span className="portfolio-icon">
                   <i className={`fas ${project.icon}`} aria-hidden="true"></i>
@@ -28,14 +23,18 @@ export default function Portfolio() {
               </div>
               <div className="portfolio-info">
                 <span className="portfolio-tag">{project.category}</span>
-                <h4>{project.title}</h4>
+                <h3>{project.name}</h3>
+                <p>{project.cardText}</p>
               </div>
               <span className="portfolio-arrow" aria-hidden="true">
                 <i className="fas fa-arrow-right"></i>
               </span>
-            </div>
+            </a>
           ))}
         </div>
+        <p className="pg-note">
+          <a href="/portfolio">View the full portfolio</a>
+        </p>
       </div>
     </section>
   );

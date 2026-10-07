@@ -18,10 +18,12 @@ const poppins = Poppins({
 });
 
 const siteUrl = 'https://codelaksh.in';
-const siteTitle = 'CodeLaksh | AI Solutions & Software Development';
+const siteTitle = 'CodeLaksh | Software Development Company in India';
 const siteDescription =
-  'CodeLaksh - Premier AI Solutions & Software Development Company in India. Web Development, App Development, AI Chatbots, Machine Learning.';
+  'CodeLaksh is a software development company in India delivering custom software, web and mobile app development, AI, machine learning, cloud, ERP and digital solutions for businesses.';
 
+// Page-specific canonicals are set on each page (pageMetadata in lib/seo.js); none is set here so a page can never
+// inherit another page's canonical by accident.
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -29,30 +31,18 @@ export const metadata = {
     template: '%s | CodeLaksh',
   },
   description: siteDescription,
-  keywords: [
-    'AI solutions',
-    'AI chatbot development',
-    'web development company India',
-    'app development',
-    'machine learning',
-    'software development company India',
-    'ERP software India',
-    'GST billing software',
-    'CodeLaksh ERP',
-    'CodeLaksh',
-  ],
-  authors: [{ name: 'CodeLaksh' }],
+  applicationName: 'CodeLaksh',
+  authors: [{ name: 'CodeLaksh', url: siteUrl }],
   creator: 'CodeLaksh',
   publisher: 'CodeLaksh',
-  alternates: { canonical: '/' },
   openGraph: {
     title: siteTitle,
-    description: 'Transform your business with cutting-edge AI technology.',
+    description: siteDescription,
     url: siteUrl,
     siteName: 'CodeLaksh',
     locale: 'en_IN',
     type: 'website',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'CodeLaksh' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'CodeLaksh - Software Development Company in India' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -63,7 +53,7 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true },
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
   },
 };
 
@@ -77,6 +67,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${montserrat.variable} ${poppins.variable}`} data-theme="dark" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
         <script
           dangerouslySetInnerHTML={{
             __html:

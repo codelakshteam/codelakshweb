@@ -2,7 +2,7 @@ const items = [
   { icon: 'fab fa-google-play', text: 'CodeLaksh ERP live on Google Play' },
   { icon: 'fas fa-gift', text: '7-day free trial on ERP' },
   { icon: 'fas fa-file-invoice', text: 'GST-ready billing' },
-  { icon: 'fas fa-location-dot', text: 'Made in India' },
+  { icon: 'fas fa-location-dot', text: 'Based in Aurangabad, Maharashtra' },
 ];
 
 export default function ProofStrip() {

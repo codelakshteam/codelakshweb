@@ -108,20 +108,6 @@ export default function Contact() {
                 <p>Mon-Sat: 10 AM to 7 PM</p>
               </div>
             </div>
-            <div className="social-links">
-              <a href="#" aria-label="LinkedIn">
-                <i className="fab fa-linkedin" aria-hidden="true"></i>
-              </a>
-              <a href="#" aria-label="Twitter">
-                <i className="fab fa-twitter" aria-hidden="true"></i>
-              </a>
-              <a href="#" aria-label="Instagram">
-                <i className="fab fa-instagram" aria-hidden="true"></i>
-              </a>
-              <a href="#" aria-label="GitHub">
-                <i className="fab fa-github" aria-hidden="true"></i>
-              </a>
-            </div>
           </div>
           <form className="contact-form" id="contactForm" onSubmit={handleSubmit}>
             {submitted ? (
@@ -153,10 +139,14 @@ export default function Contact() {
                 />
                 <select name="service" defaultValue="">
                   <option value="">Select Service</option>
-                  <option>AI Chatbot Development</option>
+                  <option>Custom Software Development</option>
                   <option>Web Development</option>
-                  <option>App Development</option>
+                  <option>Mobile App Development</option>
+                  <option>AI Development / Chatbot</option>
                   <option>Machine Learning</option>
+                  <option>ERP / Business Software</option>
+                  <option>E-Commerce Development</option>
+                  <option>Cloud Solutions</option>
                   <option>Digital Marketing</option>
                 </select>
                 <textarea name="message" placeholder="Tell us about your project" rows={5} required></textarea>

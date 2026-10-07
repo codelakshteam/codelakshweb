@@ -4,12 +4,20 @@ import Footer from '@/components/Footer';
 import Chatbot from '@/components/Chatbot';
 import ErpSubnav from '@/components/ErpSubnav';
 import ErpPricing from '@/components/ErpPricing';
+import { pageMetadata } from '@/lib/seo';
 import { PLAY_STORE_URL, erpHighlights, advancedFeatures, industryModules, mobileShots, desktopShots, addOns, erpFaqs } from '@/components/erpData';
 
 export const metadata = {
-  title: { absolute: 'CodeLaksh ERP: GST Billing, Inventory & Accounting Software for India' },
-  description:
-    'GST billing, inventory & accounting ERP for Indian shops, restaurants and hotels. Multi-branch, roles, live sync and full accounting. Works offline on desktop, Android app on Google Play. 7-day free trial.',
+  ...pageMetadata({
+    title: 'CodeLaksh ERP: GST Billing, Inventory & Accounting Software',
+    description:
+      'GST billing, inventory and accounting ERP for Indian shops, restaurants and hotels. Multi-branch, live sync, offline desktop and Android app. 7-day free trial.',
+    path: '/erp',
+    image: '/erp-assets/mobile/billing.webp',
+    imageAlt: 'CodeLaksh ERP mobile app',
+    imageWidth: 540,
+    imageHeight: 1169,
+  }),
   keywords: [
     'ERP software India',
     'GST billing software',
@@ -18,17 +26,8 @@ export const metadata = {
     'accounting software India',
     'restaurant billing software',
     'offline billing software',
-    'retail billing software',
     'CodeLaksh ERP',
   ],
-  alternates: { canonical: '/erp' },
-  openGraph: {
-    title: 'CodeLaksh ERP: GST Billing, Inventory & Accounting Software for India',
-    description: 'GST billing, inventory, accounting and payments. Desktop + Android app. 7-day free trial.',
-    url: 'https://codelaksh.in/erp',
-    type: 'website',
-    images: [{ url: '/erp-assets/mobile/billing.webp', width: 540, height: 1169, alt: 'CodeLaksh ERP mobile app' }],
-  },
 };
 
 const jsonLd = {
@@ -41,6 +40,27 @@ const jsonLd = {
         name: item.q,
         acceptedAnswer: { '@type': 'Answer', text: item.a },
       })),
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://codelaksh.in/erp#app',
+      name: 'CodeLaksh ERP',
+      url: 'https://codelaksh.in/erp',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Android, Windows',
+      description:
+        'GST billing, inventory, accounting, purchases and payments software for Indian shops, restaurants and hotels. Works offline on desktop with cloud sync and a mobile app.',
+      downloadUrl: 'https://play.google.com/store/apps/details?id=com.codelaksh.erp',
+      publisher: { '@id': 'https://codelaksh.in/#organization' },
+      offers: [
+        { '@type': 'Offer', name: 'Starter (yearly)', price: '3499', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Growth (monthly)', price: '499', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Growth (yearly)', price: '4999', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Business (monthly)', price: '999', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Business (yearly)', price: '9999', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Pro (monthly)', price: '1999', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Pro (yearly)', price: '19999', priceCurrency: 'INR' },
+      ],
     },
     {
       '@type': 'BreadcrumbList',
@@ -275,7 +295,7 @@ export default function ErpPage() {
             <p className="erp-sub">Install the app, or talk to us for a demo, migration from Tally/Vyapar, or a custom quote.</p>
             <div className="erp-cta erp-center">
               <PlayStoreButton />
-              <a href="/#contact" className="btn btn-outline">
+              <a href="/contact" className="btn btn-outline">
                 Contact us
               </a>
             </div>

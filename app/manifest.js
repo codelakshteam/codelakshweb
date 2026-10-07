@@ -1,9 +1,9 @@
 export default function manifest() {
   return {
-    name: 'CodeLaksh - AI Solutions & Software Development',
+    name: 'CodeLaksh - Software Development Company in India',
     short_name: 'CodeLaksh',
     description:
-      'Premier AI Solutions & Software Development Company in India. Web Development, App Development, AI Chatbots, Machine Learning.',
+      'CodeLaksh is a software development company in India delivering custom software, web and mobile apps, AI, ERP and cloud solutions.',
     start_url: '/',
     display: 'standalone',
     background_color: '#0f0f1a',

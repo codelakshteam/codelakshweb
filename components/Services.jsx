@@ -1,35 +1,4 @@
-const services = [
-  {
-    icon: 'fa-robot',
-    title: 'AI Chatbots',
-    description: 'Intelligent conversational AI bots trained on your data for 24/7 customer support.',
-  },
-  {
-    icon: 'fa-brain',
-    title: 'Machine Learning',
-    description: 'Custom ML models for prediction, classification, and business automation.',
-  },
-  {
-    icon: 'fa-code',
-    title: 'Web Development',
-    description: 'Modern responsive websites and web applications using React, Node.js, Python.',
-  },
-  {
-    icon: 'fa-mobile-alt',
-    title: 'App Development',
-    description: 'Native and cross-platform mobile apps for iOS and Android platforms.',
-  },
-  {
-    icon: 'fa-cloud',
-    title: 'Cloud Solutions',
-    description: 'Cloud architecture, migration and management on AWS, Azure, GCP.',
-  },
-  {
-    icon: 'fa-chart-line',
-    title: 'Digital Marketing',
-    description: 'SEO, social media marketing and growth strategies to scale your business.',
-  },
-];
+import { services } from '@/lib/services';
 
 export default function Services() {
   return (
@@ -38,25 +7,32 @@ export default function Services() {
         <div className="section-header">
           <span className="section-subtitle">Our Services</span>
           <h2 className="section-title">
-            Comprehensive
+            Software Development
             <br />
-            <span className="highlight">Digital Solutions</span>
+            <span className="highlight">Services for Your Business</span>
           </h2>
+          <p className="erp-sub">
+            From custom software and ERP to mobile apps, AI and cloud, everything is built, deployed and supported by one
+            team.
+          </p>
         </div>
         <div className="services-grid">
           {services.map((service) => (
-            <div className="service-card" key={service.title}>
+            <div className="service-card" key={service.slug}>
               <div className="service-icon">
                 <i className={`fas ${service.icon}`} aria-hidden="true"></i>
               </div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <a href="#contact" className="service-link">
-                Learn More <i className="fas fa-arrow-right" aria-hidden="true"></i>
+              <h3>{service.name}</h3>
+              <p>{service.cardText}</p>
+              <a href={`/services/${service.slug}`} className="service-link">
+                {service.anchor} <i className="fas fa-arrow-right" aria-hidden="true"></i>
               </a>
             </div>
           ))}
         </div>
+        <p className="pg-note">
+          <a href="/services">Browse all software development services</a>
+        </p>
       </div>
     </section>
   );

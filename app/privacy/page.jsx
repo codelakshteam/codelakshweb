@@ -1,11 +1,14 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { pageMetadata } from '@/lib/seo';
 
 export const metadata = {
-  title: 'Privacy Policy',
-  description:
-    'Privacy Policy for CodeLaksh ERP - our billing, inventory and business management platform available on the web, desktop, Android and iOS.',
-  alternates: { canonical: '/privacy' },
+  ...pageMetadata({
+    title: 'Privacy Policy | CodeLaksh',
+    description:
+      'Privacy Policy for CodeLaksh and CodeLaksh ERP: what information we collect, how we use it and how we protect it across our web, desktop, Android and iOS products.',
+    path: '/privacy',
+  }),
   robots: { index: true, follow: true },
 };
 

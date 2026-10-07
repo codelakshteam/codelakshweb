@@ -79,7 +79,7 @@ export const plans = [
       'Email support',
     ],
     cta: 'Contact us',
-    href: '/#contact',
+    href: '/contact',
   },
   {
     name: 'Growth',
@@ -122,7 +122,7 @@ export const plans = [
       'Priority support',
     ],
     cta: 'Contact us',
-    href: '/#contact',
+    href: '/contact',
   },
   {
     name: 'Pro',
@@ -141,7 +141,7 @@ export const plans = [
       'Priority support',
     ],
     cta: 'Talk to us',
-    href: '/#contact',
+    href: '/contact',
   },
 ];
 
