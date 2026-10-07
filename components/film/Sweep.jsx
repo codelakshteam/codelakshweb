@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { useScrollProgress } from '@/components/film/hooks';
 import { setAct } from '@/lib/film';
+import { play } from '@/lib/sound';
 
 // A tone change shot as light, not a colour switch. A bright edge travels across a pinned frame. On one side the
 // scene is still the old tone; on the other it has been "exposed" into the new one, and the headline is cut along the
@@ -10,7 +11,16 @@ import { setAct } from '@/lib/film';
 // real heading; the old-tone layer is an inert, aria-hidden twin that only exists for the visual.
 export default function Sweep({ to = 'light', eyebrow, lines, children, id, meta }) {
   const ref = useRef(null);
-  useScrollProgress(ref, { mode: 'pin' });
+  const fired = useRef(false);
+  useScrollProgress(ref, {
+    mode: 'pin',
+    onChange: (p) => {
+      if (p > 0.1 && p < 0.9 && !fired.current) {
+        fired.current = true;
+        play('sweep');
+      } else if (p < 0.02 || p > 0.98) fired.current = false;
+    },
+  });
   useEffect(() => {
     const el = ref.current;
     if (!el || !('IntersectionObserver' in window)) return undefined;

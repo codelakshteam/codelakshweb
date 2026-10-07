@@ -57,6 +57,8 @@ export default function ContactPage() {
                 Phone: <a href={`tel:${SITE.phone}`}>{SITE.phoneDisplay}</a>
                 <br />
                 Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+                <br />
+                Second branch: Pune, Maharashtra
               </address>
               <p>
                 <strong>Business hours:</strong> Monday to Saturday, 10:00 AM to 7:00 PM (IST). We work with clients in{' '}

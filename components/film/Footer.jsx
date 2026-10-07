@@ -33,6 +33,7 @@ export default function Footer() {
             <p>Sangram Nagar, {SITE.city} ({SITE.cityAlt})<br />{SITE.region}, India</p>
             <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
             <a href={`tel:${SITE.phone}`}>{SITE.phoneDisplay}</a>
+            <p>Second branch: Pune, Maharashtra</p>
             <p className="fm-dim">Mon to Sat, 10:00 to 19:00 IST</p>
           </address>
         </div>

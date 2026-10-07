@@ -48,17 +48,20 @@ export default function Stage2D({ n = 700, still = false }) {
         const f = [cam.l[0] - cam.p[0], cam.l[1] - cam.p[1], cam.l[2] - cam.p[2]];
         const fl = Math.hypot(...f);
         f[0] /= fl; f[1] /= fl; f[2] /= fl;
-        let r = [f[2], 0, -f[0]];
+        let r = [-f[2], 0, f[0]];
         const rl = Math.hypot(...r) || 1;
         r = [r[0] / rl, 0, r[2] / rl];
         const u = [r[1] * f[2] - r[2] * f[1], r[2] * f[0] - r[0] * f[2], r[0] * f[1] - r[1] * f[0]];
         const focal = H / 2 / Math.tan((38 * Math.PI) / 360);
-        const ox = W / H > 1.35 ? 1.9 : 0;
+        const asp = W / H;
+        const fit = asp < 1 ? Math.max(0.4, asp) : 1;
+        const ox = asp > 1.35 ? 1.9 : 0;
+        const oy = asp < 1 ? 2.4 : 0;
         const proj = new Float32Array(n * 3);
         for (let i = 0; i < n; i += 1) {
-          const x = pos[i * 3] + ox - cam.p[0];
-          const y = pos[i * 3 + 1] - cam.p[1];
-          const z = pos[i * 3 + 2] - cam.p[2];
+          const x = pos[i * 3] * fit + ox - cam.p[0];
+          const y = pos[i * 3 + 1] * fit + oy - cam.p[1];
+          const z = pos[i * 3 + 2] * fit - cam.p[2];
           const dz = x * f[0] + y * f[1] + z * f[2];
           proj[i * 3] = W / 2 + ((x * r[0] + y * r[1] + z * r[2]) * focal) / dz;
           proj[i * 3 + 1] = H / 2 - ((x * u[0] + y * u[1] + z * u[2]) * focal) / dz;
@@ -85,9 +88,9 @@ export default function Stage2D({ n = 700, still = false }) {
         for (let i = 0; i < n; i += 1) {
           const dz = proj[i * 3 + 2];
           if (dz < 1) continue;
-          const px = (0.9 + size[i] * 2.2) * Math.min(2.2, 12 / dz + 0.4);
+          const px = (0.9 + size[i] * 2.2) * Math.min(2.2, 12 / dz + 0.4) * (fit < 1 ? 2.3 : 1);
           const node = size[i] > 0.9;
-          ctx.fillStyle = node ? 'rgba(236,246,255,0.95)' : `rgba(205,214,226,${0.5 * Math.min(1, 24 / dz)})`;
+          ctx.fillStyle = node ? 'rgba(236,246,255,0.95)' : `rgba(205,224,230,${0.7 * Math.min(1, 24 / dz)})`;
           ctx.fillRect(proj[i * 3] - px / 2, proj[i * 3 + 1] - px / 2, px, px);
         }
       }

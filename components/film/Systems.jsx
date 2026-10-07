@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useScrollProgress, useOnScreen } from '@/components/film/hooks';
 import { film, setAct } from '@/lib/film';
+import { play } from '@/lib/sound';
 import { systems } from '@/lib/home';
 
 // What we engineer: a pinned act where the scene itself changes. Scrolling (or choosing a system on the rail) moves the
@@ -18,6 +19,11 @@ export default function Systems() {
       setIdx(Math.max(0, Math.min(systems.length - 1, Math.floor(p * 5 + 0.41))));
     },
   });
+  const seen = useRef(false);
+  useEffect(() => {
+    if (seen.current) play('latch');
+    seen.current = true;
+  }, [idx]);
   useEffect(() => {
     setAct('systems', on);
     return () => setAct('systems', false);

@@ -182,7 +182,10 @@ export default function StageGL({ n = 1800 }) {
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       pmat.uniforms.uScale.value = (h * renderer.getPixelRatio()) / (2 * Math.tan((38 * Math.PI) / 360));
-      world.position.x = w / h > 1.35 ? 1.9 : 0;
+      const asp = w / h;
+      const fit = asp < 1 ? Math.max(0.4, asp) : 1;
+      world.scale.setScalar(fit);
+      world.position.set(asp > 1.35 ? 1.9 : 0, asp < 1 ? 2.4 : 0, 0);
     };
     resize();
     window.addEventListener('resize', resize);

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { play } from '@/lib/sound';
 import { SITE } from '@/lib/seo';
 import { contactTypes } from '@/lib/home';
 
@@ -42,6 +43,7 @@ export default function ContactExperience({ id = 'contact', heading = 'h2' }) {
       });
       if (!res.ok) throw new Error();
       setDone(true);
+      play('chime');
     } catch {
       setError(`Something went wrong. Please try again or email ${SITE.email}.`);
     } finally {
@@ -75,6 +77,7 @@ export default function ContactExperience({ id = 'contact', heading = 'h2' }) {
               <li>
                 Sangram Nagar, {SITE.city} ({SITE.cityAlt}), {SITE.region}
               </li>
+              <li>Second branch: Pune, Maharashtra</li>
               <li>Mon to Sat, 10:00 to 19:00 IST</li>
             </ul>
           </div>

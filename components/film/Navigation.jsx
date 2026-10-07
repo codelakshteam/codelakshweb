@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import SoundToggle from '@/components/film/SoundToggle';
 import { SITE } from '@/lib/seo';
 
 const links = [
@@ -61,6 +62,7 @@ export default function Navigation() {
             <a key={l.href} href={l.href} aria-current={active(l.href) ? 'page' : undefined}>{l.label}</a>
           ))}
         </nav>
+        <SoundToggle />
         <a href="/contact" className="fm-nav-cta" data-cta>
           Start a project <span aria-hidden="true">&#8599;</span>
         </a>
@@ -81,6 +83,7 @@ export default function Navigation() {
           </ol>
         </nav>
         <div className="fm-sheet-foot">
+          <SoundToggle />
           <a href={`mailto:${SITE.email}`} tabIndex={open ? 0 : -1}>{SITE.email}</a>
           <a href={`tel:${SITE.phone}`} tabIndex={open ? 0 : -1}>{SITE.phoneDisplay}</a>
         </div>

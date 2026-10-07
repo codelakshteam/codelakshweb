@@ -6,7 +6,7 @@ export default function Spec() {
     <section className="fm-spec-light" data-tone="light" aria-label="What CodeLaksh is">
       <div className="fm-wrap fm-two">
         <p className="fm-lead">
-          CodeLaksh is a software development company in {SITE.city} ({SITE.cityAlt}), {SITE.region}. A team of developers, designers and
+          CodeLaksh is a software development company in {SITE.city} ({SITE.cityAlt}), {SITE.region}, with a second branch in Pune. A team of developers, designers and
           project managers designs, builds and supports software for businesses across India.
         </p>
         <ul className="fm-rows">

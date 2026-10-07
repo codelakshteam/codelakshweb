@@ -1,12 +1,13 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { play } from '@/lib/sound';
 import { useScrollProgress } from '@/components/film/hooks';
 import { industries } from '@/lib/home';
 
 const SLOTS = {
   radial: (k) => [50 + Math.cos(((k * 60 - 90) * Math.PI) / 180) * 37, 50 + Math.sin(((k * 60 - 90) * Math.PI) / 180) * 38],
-  flow: (k) => [10 + k * 16, 50 + (k % 2 ? 22 : -22)],
+  flow: (k) => [15 + k * 13, 50 + (k % 2 ? 22 : -22)],
   grid: (k) => [20 + (k % 3) * 30, 25 + Math.floor(k / 3) * 50],
 };
 
@@ -16,6 +17,11 @@ export default function Industries() {
   const ref = useRef(null);
   const [idx, setIdx] = useState(0);
   useScrollProgress(ref, { mode: 'pin', onChange: (p) => setIdx(Math.max(0, Math.min(industries.length - 1, Math.floor(p * industries.length * 0.999)))) });
+  const seen = useRef(false);
+  useEffect(() => {
+    if (seen.current) play('tick');
+    seen.current = true;
+  }, [idx]);
   const cur = industries[idx];
   const slot = SLOTS[cur.arr];
 

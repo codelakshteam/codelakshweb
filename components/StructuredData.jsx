@@ -11,7 +11,7 @@ const data = {
       name: SITE.name,
       alternateName: 'CodeLaksh Software Development',
       description:
-        'CodeLaksh is a software development company in Chhatrapati Sambhajinagar (Aurangabad), Maharashtra, India, building custom software, web and mobile apps, AI, machine learning, ERP, cloud and digital marketing solutions.',
+        'CodeLaksh is a software development company in Chhatrapati Sambhajinagar (Aurangabad), Maharashtra, India, building custom software, web and mobile apps, AI, machine learning, ERP, cloud and digital marketing solutions. A second branch is in Pune, Maharashtra.',
       url: `${SITE.url}/`,
       logo: { '@type': 'ImageObject', url: `${SITE.url}/logo.png`, width: 534, height: 467 },
       image: `${SITE.url}/og-image.png`,
@@ -26,6 +26,7 @@ const data = {
         addressCountry: SITE.country,
       },
       areaServed: { '@type': 'Country', name: 'India' },
+      subOrganization: SITE.branches.map((b) => ({ '@type': 'LocalBusiness', name: `CodeLaksh ${b.city}`, parentOrganization: { '@id': `${SITE.url}/#organization` }, address: { '@type': 'PostalAddress', addressLocality: b.city, addressRegion: b.region, addressCountry: SITE.country } })),
       openingHoursSpecification: {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: SITE.hours.days,

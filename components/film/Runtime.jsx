@@ -3,6 +3,7 @@
 import Lenis from 'lenis';
 import { useEffect, useRef } from 'react';
 import { film } from '@/lib/film';
+import { initSound, play, unlock } from '@/lib/sound';
 
 // Behaviour layered over the HTML: smooth scroll with velocity, the precision reticle cursor, the shutter page
 // transition, the light-source mouse position and scroll-reveal for inner pages. All of it is optional: with
@@ -18,6 +19,32 @@ export default function Runtime() {
     const fine = window.matchMedia('(pointer: fine)').matches;
     film.reduced = reduced;
     const off = [];
+
+    // ---- interface sound (see lib/sound.js): unlocked by the first gesture ----
+    initSound();
+    const gesture = () => unlock();
+    const INTERACTIVE = 'a[href], button, summary, [role="tab"], label[for]';
+    const onSoundClick = (e) => {
+      const t = e.target.closest && e.target.closest(INTERACTIVE);
+      if (t && !t.closest('.fm-sound')) play('click');
+    };
+    let lastHover = null;
+    const onSoundHover = (e) => {
+      const t = e.target.closest && e.target.closest(INTERACTIVE);
+      if (t === lastHover) return;
+      lastHover = t;
+      if (t && fine) play('hover');
+    };
+    window.addEventListener('pointerdown', gesture, { once: false, passive: true });
+    window.addEventListener('keydown', gesture, { passive: true });
+    document.addEventListener('click', onSoundClick);
+    document.addEventListener('mouseover', onSoundHover, { passive: true });
+    off.push(() => {
+      window.removeEventListener('pointerdown', gesture);
+      window.removeEventListener('keydown', gesture);
+      document.removeEventListener('click', onSoundClick);
+      document.removeEventListener('mouseover', onSoundHover);
+    });
 
     // ---- smooth scroll + velocity ----
     let lenis = null;
@@ -58,6 +85,7 @@ export default function Runtime() {
       const url = new URL(a.href, window.location.href);
       if (url.origin !== window.location.origin || (url.pathname === window.location.pathname && url.search === window.location.search) || reduced || !shutter.current) return;
       e.preventDefault();
+      play('whoosh');
       shutter.current.classList.add('closing');
       window.setTimeout(() => (window.location.href = url.href), 420);
     };

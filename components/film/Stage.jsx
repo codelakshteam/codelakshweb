@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useCapability } from '@/components/cinematic/hooks';
+import { useCapability } from '@/components/film/hooks';
 import Stage2D from '@/components/film/Stage2D';
 
 // three.js is its own chunk, requested only when a device can run it well. Phones, weak devices and reduced-motion
