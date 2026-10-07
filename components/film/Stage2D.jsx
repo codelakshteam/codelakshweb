@@ -53,7 +53,7 @@ export default function Stage2D({ n = 700, still = false }) {
         r = [r[0] / rl, 0, r[2] / rl];
         const u = [r[1] * f[2] - r[2] * f[1], r[2] * f[0] - r[0] * f[2], r[0] * f[1] - r[1] * f[0]];
         const focal = H / 2 / Math.tan((38 * Math.PI) / 360);
-        const ox = W / H > 1.35 ? 2.5 : 0;
+        const ox = W / H > 1.35 ? 1.9 : 0;
         const proj = new Float32Array(n * 3);
         for (let i = 0; i < n; i += 1) {
           const x = pos[i * 3] + ox - cam.p[0];

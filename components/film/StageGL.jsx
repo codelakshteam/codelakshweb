@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
-import { OBJ, buildLayouts, cameraFor, film, filmT, makeSolver } from '@/lib/film';
+import { OBJ, OBJ_OFFSET, OBJ_SCALE, buildLayouts, cameraFor, film, filmT, headFrame, makeSolver } from '@/lib/film';
 
 // The WebGL stage. One precision-machined object (a C-arc, a notched ring and a beam passing through it, lit by a
 // studio environment) is the opening shot. As the page scrolls the camera moves in, the object breaks into points,
@@ -46,64 +46,96 @@ export default function StageGL({ n = 1800 }) {
     const rig = new THREE.Group();
     world.add(rig);
 
-    // ---- the object ----
+    // ---- the object: the CodeLaksh logo, machined ----
     const metal = track(new THREE.MeshPhysicalMaterial({ color: 0xcfd8dc, metalness: 1, roughness: 0.27, clearcoat: 0.3, clearcoatRoughness: 0.35 }));
-    const dark = track(new THREE.MeshPhysicalMaterial({ color: 0x14303f, metalness: 0.85, roughness: 0.36 }));
-    const inlay = track(new THREE.MeshBasicMaterial({ color: 0x5fd0b5, transparent: true, opacity: 0.95 }));
-    const tip = track(new THREE.MeshStandardMaterial({ color: 0x3cb371, emissive: 0x1e7a4a, emissiveIntensity: 0.9, metalness: 0.4, roughness: 0.4 }));
+    const navy = track(new THREE.MeshPhysicalMaterial({ color: 0x0b4a78, metalness: 0.85, roughness: 0.3, clearcoat: 0.4 }));
+    const teal = track(new THREE.MeshPhysicalMaterial({ color: 0x0b8d99, metalness: 0.8, roughness: 0.28, clearcoat: 0.5 }));
+    const inlay = track(new THREE.MeshBasicMaterial({ color: 0x5fe0c8, transparent: true, opacity: 0.95 }));
+    const barG = track(new THREE.MeshPhysicalMaterial({ color: 0x1fa57a, metalness: 0.8, roughness: 0.3, clearcoat: 0.5 }));
+    const tip = track(new THREE.MeshStandardMaterial({ color: 0x3cb878, emissive: 0x1e8a52, emissiveIntensity: 0.9, metalness: 0.4, roughness: 0.4 }));
     const lineMat = track(new THREE.MeshBasicMaterial({ color: 0x6fc4d4, transparent: true, opacity: 0.5 }));
-    const fadeMats = [metal, dark, inlay, lineMat, tip];
+    const fadeMats = [metal, navy, teal, barG, inlay, lineMat, tip];
+    const parts = [];
 
+    // C: thick arc open on the right, with a green terminal at the top
+    const a = OBJ.arc;
     const arcShape = new THREE.Shape();
-    arcShape.absarc(0, 0, OBJ.arcOuter, OBJ.arcStart, OBJ.arcEnd, false);
-    arcShape.absarc(0, 0, OBJ.arcInner, OBJ.arcEnd, OBJ.arcStart, true);
+    arcShape.absarc(0, 0, a.outer, a.start, a.end, false);
+    arcShape.absarc(0, 0, a.inner, a.end, a.start, true);
     arcShape.closePath();
-    const arcGeo = track(new THREE.ExtrudeGeometry(arcShape, { depth: OBJ.arcDepth, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.04, bevelSegments: 3, curveSegments: 96 }));
-    arcGeo.translate(0, 0, -OBJ.arcDepth / 2);
-    const arc = new THREE.Mesh(arcGeo, metal);
+    const arcGeo = track(new THREE.ExtrudeGeometry(arcShape, { depth: a.depth, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.04, bevelSegments: 3, curveSegments: 120 }));
+    arcGeo.translate(0, 0, -a.depth / 2);
+    parts.push(new THREE.Mesh(arcGeo, metal));
+    const capShape = new THREE.Shape();
+    capShape.absarc(0, 0, a.outer + 0.01, a.start, a.start + 0.16, false);
+    capShape.absarc(0, 0, a.inner - 0.01, a.start + 0.16, a.start, true);
+    capShape.closePath();
+    const capGeo = track(new THREE.ExtrudeGeometry(capShape, { depth: a.depth + 0.04, bevelEnabled: false, curveSegments: 16 }));
+    capGeo.translate(0, 0, -a.depth / 2 - 0.02);
+    parts.push(new THREE.Mesh(capGeo, tip));
 
-    const ringShape = new THREE.Shape();
-    ringShape.absarc(0, 0, OBJ.ringOuter, 0, Math.PI * 2, false);
-    const hole = new THREE.Path();
-    hole.absarc(0, 0, OBJ.ringInner, 0, Math.PI * 2, true);
-    ringShape.holes.push(hole);
-    for (let k = 0; k < 28; k += 1) {
-      const a = (k / 28) * Math.PI * 2;
-      const rc = (OBJ.ringOuter + OBJ.ringInner) / 2;
-      const cx = Math.cos(a) * rc;
-      const cy = Math.sin(a) * rc;
-      const p = new THREE.Path();
-      [[-0.03, -0.07], [0.03, -0.07], [0.03, 0.07], [-0.03, 0.07]].forEach(([u, v], i) => {
-        const x = cx + u * Math.cos(a) - v * Math.sin(a);
-        const y = cy + u * Math.sin(a) + v * Math.cos(a);
-        if (i === 0) p.moveTo(x, y);
-        else p.lineTo(x, y);
-      });
-      p.closePath();
-      ringShape.holes.push(p);
-    }
-    const ringGeo = track(new THREE.ExtrudeGeometry(ringShape, { depth: OBJ.ringDepth, bevelEnabled: false, curveSegments: 96 }));
-    ringGeo.translate(0, 0, -OBJ.ringDepth / 2);
-    const ring = new THREE.Mesh(ringGeo, dark);
+    // three rising bars
+    OBJ.bars.forEach((b, i) => {
+      const m = new THREE.Mesh(track(new THREE.BoxGeometry(OBJ.barW, b.h, OBJ.barD)), [navy, teal, barG][i]);
+      m.position.set(b.x, OBJ.barBase + b.h / 2, 0);
+      m.userData.bar = i;
+      parts.push(m);
+    });
 
-    const beamGeo = track(new THREE.BoxGeometry(OBJ.beamL, OBJ.beamW, OBJ.beamD));
-    const beam = new THREE.Mesh(beamGeo, metal);
-    beam.rotation.z = OBJ.beamAngle;
-    beam.position.set(0.5, -0.3, 0);
-    const inlayMesh = new THREE.Mesh(track(new THREE.BoxGeometry(OBJ.beamL * 0.78, 0.035, 0.02)), inlay);
-    inlayMesh.position.z = OBJ.beamD / 2 + 0.006;
-    beam.add(inlayMesh);
-    const cap = new THREE.Mesh(track(new THREE.BoxGeometry(0.16, OBJ.beamW + 0.16, OBJ.beamD + 0.16)), dark);
-    cap.position.x = OBJ.beamL / 2;
-    beam.add(cap);
-    const tipMesh = new THREE.Mesh(track(new THREE.BoxGeometry(0.1, OBJ.beamW + 0.18, OBJ.beamD + 0.18)), tip);
-    tipMesh.position.x = OBJ.beamL / 2 + 0.13;
-    beam.add(tipMesh);
+    // the S-curve arrow climbing out through the opening, with its head
+    const curve = new THREE.CatmullRomCurve3(OBJ.curve.map((v) => new THREE.Vector3(...v)), false, 'catmullrom', 0.5);
+    const tube = new THREE.Mesh(track(new THREE.TubeGeometry(curve, 120, OBJ.tube, 12, false)), teal);
+    tube.scale.z = OBJ.tubeFlat;
+    tube.position.z = OBJ.curve[0][2] * (1 - OBJ.tubeFlat);
+    parts.push(tube);
+    const hf = headFrame();
+    const headShape = new THREE.Shape();
+    headShape.moveTo(OBJ.head.tip, 0);
+    headShape.lineTo(-OBJ.head.back, OBJ.head.half);
+    headShape.lineTo(-OBJ.head.back * 0.55, 0);
+    headShape.lineTo(-OBJ.head.back, -OBJ.head.half);
+    headShape.closePath();
+    const headGeo = track(new THREE.ExtrudeGeometry(headShape, { depth: OBJ.head.depth, bevelEnabled: true, bevelThickness: 0.03, bevelSize: 0.03, bevelSegments: 2 }));
+    headGeo.translate(0, 0, -OBJ.head.depth / 2);
+    const head = new THREE.Mesh(headGeo, teal);
+    head.position.set(hf.end[0], hf.end[1], hf.end[2]);
+    head.rotation.z = hf.ang;
+    parts.push(head);
 
-    const guide = new THREE.Mesh(track(new THREE.TorusGeometry(3.7, 0.01, 6, 240)), lineMat);
-    const guide2 = new THREE.Mesh(track(new THREE.TorusGeometry(4.15, 0.006, 6, 240)), lineMat);
+    // the L, with its green foot tip
+    const L = OBJ.ell;
+    const stem = new THREE.Mesh(track(new THREE.BoxGeometry(L.w, L.y1 - L.y0, L.d)), navy);
+    stem.position.set(L.x, (L.y0 + L.y1) / 2, L.z);
+    const foot = new THREE.Mesh(track(new THREE.BoxGeometry(L.x1 - L.x, L.h, L.d)), navy);
+    foot.position.set((L.x + L.x1) / 2, L.y0 + L.h / 2, L.z);
+    const footTip = new THREE.Mesh(track(new THREE.BoxGeometry(0.34, L.h + 0.02, L.d + 0.02)), tip);
+    footTip.position.set(L.x1 - 0.17, L.y0 + L.h / 2, L.z);
+    parts.push(stem, foot, footTip);
+
+    // the </> mark on the C's lower tail
+    const tag = new THREE.Group();
+    const stroke = (x, y, w, h, r) => {
+      const m = new THREE.Mesh(track(new THREE.BoxGeometry(w, h, 0.04)), inlay);
+      m.position.set(x, y, 0);
+      m.rotation.z = r;
+      tag.add(m);
+    };
+    stroke(-0.38, 0.09, 0.3, 0.06, 0.7); stroke(-0.38, -0.09, 0.3, 0.06, -0.7);
+    stroke(0.38, 0.09, 0.3, 0.06, -0.7); stroke(0.38, -0.09, 0.3, 0.06, 0.7);
+    stroke(0, 0, 0.42, 0.06, 1.15);
+    tag.position.set(-0.55, -2.62, a.depth / 2 + 0.06);
+    tag.rotation.z = 0.2;
+    parts.push(tag);
+
+    const guide = new THREE.Mesh(track(new THREE.TorusGeometry(3.75, 0.01, 6, 240)), lineMat);
+    const guide2 = new THREE.Mesh(track(new THREE.TorusGeometry(4.25, 0.006, 6, 240)), lineMat);
     guide2.rotation.x = 1.1;
-    rig.add(arc, ring, beam, guide, guide2);
+    parts.push(guide, guide2);
+    const inner = new THREE.Group();
+    inner.add(...parts);
+    inner.scale.setScalar(OBJ_SCALE);
+    inner.position.set(...OBJ_OFFSET);
+    rig.add(inner);
 
     const key = new THREE.DirectionalLight(0xf2fbfb, 2.4);
     key.position.set(5, 6, 6);
@@ -150,7 +182,7 @@ export default function StageGL({ n = 1800 }) {
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       pmat.uniforms.uScale.value = (h * renderer.getPixelRatio()) / (2 * Math.tan((38 * Math.PI) / 360));
-      world.position.x = w / h > 1.35 ? 2.5 : 0;
+      world.position.x = w / h > 1.35 ? 1.9 : 0;
     };
     resize();
     window.addEventListener('resize', resize);
@@ -192,10 +224,12 @@ export default function StageGL({ n = 1800 }) {
       const rotY = Math.sin(time * 0.2) * 0.35 + mouse.x * 0.45 + tS * 0.5;
       const rotX = -mouse.y * 0.2 + Math.sin(time * 0.15) * 0.06;
       rig.rotation.set(rotX, rotY, 0);
-      ring.rotation.z = time * 0.22;
       guide.rotation.z = -time * 0.05;
       guide2.rotation.z = time * 0.04;
-      beam.position.y = -0.3 + Math.sin(time * 0.6) * 0.05;
+      tube.position.y = Math.sin(time * 0.7) * 0.04;
+      parts.forEach((m) => {
+        if (m.userData.bar !== undefined) m.scale.y = 1 + Math.sin(time * 0.9 + m.userData.bar * 0.8) * 0.025;
+      });
 
       const s = solve(tS, rotY, rotX, posArr, sizeArr, false);
       posAttr.needsUpdate = true;
@@ -211,7 +245,7 @@ export default function StageGL({ n = 1800 }) {
       linesB.visible = s.b !== s.a;
 
       const meshOn = s.mesh > 0.01;
-      arc.visible = ring.visible = beam.visible = guide.visible = guide2.visible = meshOn;
+      parts.forEach((m) => (m.visible = meshOn));
       const wantT = s.mesh < 0.999;
       if (wantT !== transparentOn) {
         transparentOn = wantT;
@@ -220,8 +254,8 @@ export default function StageGL({ n = 1800 }) {
           m.needsUpdate = true;
         });
       }
-      metal.opacity = dark.opacity = tip.opacity = s.mesh;
-      inlay.opacity = 0.9 * s.mesh;
+      metal.opacity = navy.opacity = teal.opacity = barG.opacity = tip.opacity = s.mesh;
+      inlay.opacity = 0.95 * s.mesh;
       lineMat.opacity = 0.45 * s.mesh;
       rig.scale.setScalar(1 + (1 - s.mesh) * 0.25);
 
