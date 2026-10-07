@@ -1,0 +1,14 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.codelaksh.erp",
+      "sha256_cert_fingerprints": [
+        "E6:5E:09:95:C6:DE:17:2F:91:04:A5:91:F2:5B:71:4A:64:E9:89:56:3C:E4:6E:1F:49:63:91:E5:3E:73:D4:5B",
+        "CB:B9:36:9F:83:26:33:D0:D2:AC:10:CD:99:31:CA:83:91:BC:27:96:64:0F:1E:0B:D3:93:10:9E:18:D8:12:4E",
+        "E2:C3:5D:47:F3:80:5A:20:48:3D:16:8B:64:81:AF:B1:23:3A:A9:39:3D:BA:80:C3:E0:16:67:6D:15:A7:A9:85"
+      ]
+    }
+  }
+]

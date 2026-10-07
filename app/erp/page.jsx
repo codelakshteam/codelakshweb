@@ -1,0 +1,245 @@
+import Image from 'next/image';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Chatbot from '@/components/Chatbot';
+import ErpSubnav from '@/components/ErpSubnav';
+import ErpPricing from '@/components/ErpPricing';
+import { PLAY_STORE_URL, erpHighlights, mobileShots, desktopShots, addOns, erpFaqs } from '@/components/erpData';
+
+export const metadata = {
+  title: { absolute: 'CodeLaksh ERP: GST Billing, Inventory & Accounting Software for India' },
+  description:
+    'GST billing, inventory & accounting ERP for Indian shops, restaurants and hotels. Works offline on desktop, Android app on Google Play. 7-day free trial.',
+  keywords: [
+    'ERP software India',
+    'GST billing software',
+    'billing software for small business',
+    'inventory management software',
+    'accounting software India',
+    'restaurant billing software',
+    'offline billing software',
+    'retail billing software',
+    'CodeLaksh ERP',
+  ],
+  alternates: { canonical: '/erp' },
+  openGraph: {
+    title: 'CodeLaksh ERP: GST Billing, Inventory & Accounting Software for India',
+    description: 'GST billing, inventory, accounting and payments. Desktop + Android app. 7-day free trial.',
+    url: 'https://codelaksh.in/erp',
+    type: 'website',
+    images: [{ url: '/erp-assets/mobile/billing.webp', width: 540, height: 1169, alt: 'CodeLaksh ERP mobile app' }],
+  },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      mainEntity: erpFaqs.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://codelaksh.in/' },
+        { '@type': 'ListItem', position: 2, name: 'CodeLaksh ERP', item: 'https://codelaksh.in/erp' },
+      ],
+    },
+  ],
+};
+
+function PlayStoreButton({ className = '' }) {
+  return (
+    <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className={`btn btn-play ${className}`}>
+      <i className="fab fa-google-play" aria-hidden="true"></i>
+      <span>
+        <small>GET IT ON</small>
+        Google Play
+      </span>
+    </a>
+  );
+}
+
+export default function ErpPage() {
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Header />
+      <main>
+        <section className="erp-hero">
+          <div className="container erp-hero-grid">
+            <div className="erp-hero-copy">
+              <span className="section-subtitle">Our Product</span>
+              <h1 className="erp-title">
+                CodeLaksh <span className="highlight">ERP</span>
+              </h1>
+              <p className="erp-lead">
+                GST billing software, inventory management, accounting, purchases and payments in one ERP, built for
+                Indian shops, distributors, restaurants and hotels. Bill offline at the counter, sync to the cloud, and run your
+                business from your phone.
+              </p>
+              <div className="erp-cta">
+                <PlayStoreButton />
+                <a href="#pricing" className="btn btn-outline">
+                  See pricing
+                </a>
+              </div>
+              <p className="erp-note">
+                <i className="fas fa-circle-check" aria-hidden="true"></i> Live on Google Play &nbsp;·&nbsp;
+                <i className="fas fa-circle-check" aria-hidden="true"></i> Windows desktop app &nbsp;·&nbsp;
+                <i className="fas fa-circle-check" aria-hidden="true"></i> 7-day free trial on Starter &amp; Growth
+              </p>
+            </div>
+            <div className="erp-hero-phones" aria-hidden="false">
+              <Image className="erp-phone erp-phone-back" src={mobileShots[2].src} alt={mobileShots[2].alt} width={270} height={584} priority />
+              <Image className="erp-phone erp-phone-front" src={mobileShots[0].src} alt={mobileShots[0].alt} width={270} height={584} priority />
+            </div>
+          </div>
+        </section>
+
+        <ErpSubnav />
+
+        <section className="erp-section" id="features">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-subtitle">What you get</span>
+              <h2 className="section-title">
+                Everything to run <span className="highlight">your counter</span>
+              </h2>
+            </div>
+            <div className="erp-feature-grid">
+              {erpHighlights.map((item) => (
+                <div className="service-card" key={item.title}>
+                  <div className="service-icon">
+                    <i className={`fas ${item.icon}`} aria-hidden="true"></i>
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="erp-section erp-alt" id="mobile">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-subtitle">Mobile app</span>
+              <h2 className="section-title">
+                Your business, <span className="highlight">in your pocket</span>
+              </h2>
+              <p className="erp-sub">Available on Android. Bill, track invoices and check reports from anywhere.</p>
+            </div>
+            <div className="erp-phone-strip">
+              {mobileShots.map((shot) => (
+                <Image key={shot.src} className="erp-strip-phone" src={shot.src} alt={shot.alt} width={270} height={584} loading="lazy" />
+              ))}
+            </div>
+            <div className="erp-center">
+              <PlayStoreButton />
+            </div>
+          </div>
+        </section>
+
+        <section className="erp-section" id="desktop">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-subtitle">Desktop app</span>
+              <h2 className="section-title">
+                Built for the <span className="highlight">billing counter</span>
+              </h2>
+              <p className="erp-sub">
+                A Windows app that keeps working with no internet, with barcode scanning, printing and full reports.
+              </p>
+            </div>
+            <div className="erp-desktop-grid">
+              {desktopShots.map((shot, index) => (
+                <figure className={`erp-desktop-card ${index === 0 ? 'wide' : ''}`} key={shot.src}>
+                  <div className="frame-bar" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <Image src={shot.src} alt={`CodeLaksh ERP desktop: ${shot.title}`} width={1200} height={617} loading="lazy" />
+                  <figcaption>
+                    <strong>{shot.title}</strong>
+                    <span>{shot.text}</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="erp-section erp-alt" id="pricing">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-subtitle">Pricing</span>
+              <h2 className="section-title">
+                Simple plans, <span className="highlight">honest prices</span>
+              </h2>
+              <p className="erp-sub">All prices exclude 18% GST. Try Starter or Growth free for 7 days. Growth&apos;s trial needs no card and never auto-charges.</p>
+            </div>
+            <ErpPricing />
+
+            <h3 className="erp-addons-title">Add-ons</h3>
+            <div className="erp-addons">
+              {addOns.map((addOn) => (
+                <div className="erp-addon" key={addOn.name}>
+                  <div>
+                    <strong>{addOn.name}</strong>
+                    <span>{addOn.on}</span>
+                  </div>
+                  <em>{addOn.price}</em>
+                </div>
+              ))}
+            </div>
+            <p className="erp-fine">
+              Starter is a one-time desktop license (year 1 includes activation); updates and continued activation need the
+              annual renewal. Growth and above are recurring subscriptions. Annual prepay on Growth saves about 17% versus
+              monthly. Pricing is indicative and confirmed after we understand your branches, users and modules.
+            </p>
+          </div>
+        </section>
+
+        <section className="erp-section erp-alt" id="faq">
+          <div className="container erp-faq">
+            <div className="section-header">
+              <span className="section-subtitle">FAQ</span>
+              <h2 className="section-title">
+                Common <span className="highlight">questions</span>
+              </h2>
+            </div>
+            {erpFaqs.map((item) => (
+              <details className="erp-faq-item" key={item.q}>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className="erp-section">
+          <div className="container erp-final">
+            <h2 className="section-title">
+              Ready to <span className="highlight">get started?</span>
+            </h2>
+            <p className="erp-sub">Install the app, or talk to us for a demo, migration from Tally/Vyapar, or a custom quote.</p>
+            <div className="erp-cta erp-center">
+              <PlayStoreButton />
+              <a href="/#contact" className="btn btn-outline">
+                Contact us
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+      <Chatbot />
+    </>
+  );
+}

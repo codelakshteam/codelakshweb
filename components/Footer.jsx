@@ -6,8 +6,9 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <a href="#home" className="logo">
-              <Image src="/logo-white.png" alt="CodeLaksh logo" width={36} height={29} />
+            <a href="/" className="logo">
+              <Image className="logo-img-dark" src="/logo-white.png" alt="CodeLaksh logo" width={36} height={29} />
+              <Image className="logo-img-light" src="/logo.png" alt="" width={36} height={31} />
               <span>CodeLaksh</span>
             </a>
             <p>
@@ -17,16 +18,19 @@ export default function Footer() {
           </div>
           <div className="footer-links">
             <h4>Services</h4>
-            <a href="#services">AI Chatbots</a>
-            <a href="#services">Web Development</a>
-            <a href="#services">App Development</a>
-            <a href="#services">Machine Learning</a>
+            <a href="/#services">AI Chatbots</a>
+            <a href="/#services">Web Development</a>
+            <a href="/#services">App Development</a>
+            <a href="/#services">Machine Learning</a>
+            <a href="/erp">CodeLaksh ERP</a>
+            <a href="/#kidodom">Kidodom</a>
           </div>
           <div className="footer-links">
             <h4>Company</h4>
-            <a href="#about">About Us</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
+            <a href="/#about">About Us</a>
+            <a href="/#portfolio">Portfolio</a>
+            <a href="/#contact">Contact</a>
+            <a href="/privacy">Privacy Policy</a>
           </div>
           <div className="footer-links">
             <h4>Contact</h4>

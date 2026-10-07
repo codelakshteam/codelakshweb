@@ -1,7 +1,10 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import ProofStrip from '@/components/ProofStrip';
 import About from '@/components/About';
 import Services from '@/components/Services';
+import ErpTeaser from '@/components/ErpTeaser';
+import BrandKidodom from '@/components/BrandKidodom';
 import Portfolio from '@/components/Portfolio';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -13,8 +16,11 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <ProofStrip />
         <About />
         <Services />
+        <ErpTeaser />
+        <BrandKidodom />
         <Portfolio />
         <Contact />
       </main>

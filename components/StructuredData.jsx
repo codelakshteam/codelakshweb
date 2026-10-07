@@ -51,6 +51,44 @@ const data = {
         closes: '19:00',
       },
     },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${siteUrl}/erp#app`,
+      name: 'CodeLaksh ERP',
+      url: `${siteUrl}/erp`,
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Android, Windows',
+      description:
+        'Billing, inventory, accounting, purchases and payments software for Indian shops, restaurants and hotels. Works offline on desktop with cloud sync and a mobile app.',
+      downloadUrl: 'https://play.google.com/store/apps/details?id=com.codelaksh.erp',
+      publisher: { '@id': `${siteUrl}/#organization` },
+      offers: [
+        { '@type': 'Offer', name: 'Growth (monthly)', price: '599', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Growth (yearly)', price: '5999', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Starter (one-time)', price: '3500', priceCurrency: 'INR' },
+      ],
+    },
+    {
+      '@type': 'Brand',
+      '@id': 'https://kidodom.in/#brand',
+      name: 'Kidodom',
+      url: 'https://kidodom.in',
+      logo: `${siteUrl}/kidodom-icon.png`,
+      description: 'Safe, certified baby and kids products, a CodeLaksh brand. Available on the App Store and Google Play.',
+    },
+    {
+      '@type': 'MobileApplication',
+      '@id': 'https://kidodom.in/#app',
+      name: 'Kidodom',
+      url: 'https://kidodom.in',
+      applicationCategory: 'ShoppingApplication',
+      operatingSystem: 'iOS, Android',
+      installUrl: [
+        'https://apps.apple.com/ng/app/kidodom/id6804982156',
+        'https://play.google.com/store/apps/details?id=com.kidodom.web',
+      ],
+      publisher: { '@id': `${siteUrl}/#organization` },
+    },
   ],
 };
 

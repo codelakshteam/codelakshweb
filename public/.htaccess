@@ -1,0 +1,4 @@
+# Android App Links / Digital Asset Links: Google requires this file to be served as application/json.
+<Files "assetlinks.json">
+  ForceType application/json
+</Files>

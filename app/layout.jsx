@@ -1,5 +1,6 @@
 import { Montserrat, Poppins } from 'next/font/google';
 import StructuredData from '@/components/StructuredData';
+import RevealOnScroll from '@/components/RevealOnScroll';
 import './globals.css';
 
 const montserrat = Montserrat({
@@ -35,6 +36,9 @@ export const metadata = {
     'app development',
     'machine learning',
     'software development company India',
+    'ERP software India',
+    'GST billing software',
+    'CodeLaksh ERP',
     'CodeLaksh',
   ],
   authors: [{ name: 'CodeLaksh' }],
@@ -71,8 +75,14 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${poppins.variable}`} data-theme="dark" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('cl-theme');document.documentElement.dataset.theme=t==='light'?'light':'dark'}catch(e){}",
+          }}
+        />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -81,6 +91,7 @@ export default function RootLayout({ children }) {
       <body>
         <StructuredData />
         {children}
+        <RevealOnScroll />
       </body>
     </html>
   );

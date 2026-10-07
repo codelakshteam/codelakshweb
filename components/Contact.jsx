@@ -2,12 +2,57 @@
 
 import { useState } from 'react';
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (!EMAIL_REGEX.test(email)) {
+      setEmailError('Please enter a valid email address');
+      return;
+    }
+    setEmailError('');
+    setSubmitError('');
+
+    const form = e.target;
+    const payload = {
+      name: form.name.value,
+      email,
+      phone,
+      service: form.service.value,
+      message: form.message.value,
+    };
+
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error();
+      setSubmitted(true);
+    } catch {
+      setSubmitError('Something went wrong. Please try again or email us directly.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    if (emailError) setEmailError('');
+  };
+
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value.replace(/\D/g, '').slice(0, 10));
   };
 
   return (
@@ -84,11 +129,29 @@ export default function Contact() {
             ) : (
               <>
                 <div className="form-row">
-                  <input type="text" placeholder="Your Name" required />
-                  <input type="email" placeholder="Your Email" required />
+                  <input type="text" name="name" placeholder="Your Name" required />
+                  <div className="form-field">
+                    <input
+                      type="email"
+                      placeholder="Your Email"
+                      value={email}
+                      onChange={handleEmailChange}
+                      required
+                    />
+                    {emailError && <span className="field-error">{emailError}</span>}
+                  </div>
                 </div>
-                <input type="tel" placeholder="Phone Number" />
-                <select defaultValue="">
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  value={phone}
+                  onChange={handlePhoneChange}
+                  inputMode="numeric"
+                  pattern="[0-9]{10}"
+                  maxLength={10}
+                  title="Please enter a 10-digit phone number"
+                />
+                <select name="service" defaultValue="">
                   <option value="">Select Service</option>
                   <option>AI Chatbot Development</option>
                   <option>Web Development</option>
@@ -96,9 +159,10 @@ export default function Contact() {
                   <option>Machine Learning</option>
                   <option>Digital Marketing</option>
                 </select>
-                <textarea placeholder="Tell us about your project" rows={5}></textarea>
-                <button type="submit" className="btn btn-primary">
-                  Send Message <i className="fas fa-paper-plane" aria-hidden="true"></i>
+                <textarea name="message" placeholder="Tell us about your project" rows={5} required></textarea>
+                {submitError && <span className="field-error">{submitError}</span>}
+                <button type="submit" className="btn btn-primary" disabled={submitting}>
+                  {submitting ? 'Sending...' : 'Send Message'} <i className="fas fa-paper-plane" aria-hidden="true"></i>
                 </button>
               </>
             )}

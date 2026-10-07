@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Hero() {
   return (
     <section className="hero" id="home">
@@ -23,42 +25,44 @@ export default function Hero() {
             <a href="#contact" className="btn btn-primary">
               Get Started <i className="fas fa-arrow-right" aria-hidden="true"></i>
             </a>
-            <a href="#portfolio" className="btn btn-outline">
+            <a href="/erp" className="btn btn-outline">
+              Explore CodeLaksh ERP
+            </a>
+            <a href="#portfolio" className="btn btn-ghost">
               View Work
             </a>
           </div>
-          <div className="hero-stats">
-            <div className="stat-item">
-              <span className="stat-number">500+</span>
-              <span className="stat-label">Projects</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">150+</span>
-              <span className="stat-label">Clients</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">50+</span>
-              <span className="stat-label">Team</span>
-            </div>
-          </div>
         </div>
-        <div className="hero-visual">
-          <div className="hero-card card-main">
-            <i className="fas fa-rocket" aria-hidden="true"></i>
-            <h3>Innovation</h3>
-            <p>Cutting-edge solutions</p>
+
+        <div className="hero-stage">
+          <div className="frame">
+            <div className="frame-bar" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <Image
+              src="/erp-assets/desktop/dashboard.webp"
+              alt="CodeLaksh ERP desktop dashboard with revenue, dues and quick actions"
+              width={1200}
+              height={617}
+              priority
+            />
           </div>
-          <div className="hero-card card-1">
-            <i className="fas fa-robot" aria-hidden="true"></i>
-            <span>AI Chatbots</span>
+          <div className="stage-phone">
+            <Image
+              src="/erp-assets/mobile/billing.webp"
+              alt="CodeLaksh ERP mobile app home screen"
+              width={540}
+              height={1169}
+              priority
+            />
           </div>
-          <div className="hero-card card-2">
-            <i className="fas fa-code" aria-hidden="true"></i>
-            <span>Web Dev</span>
+          <div className="stage-chip chip-1">
+            <i className="fas fa-file-invoice" aria-hidden="true"></i> GST-ready invoices
           </div>
-          <div className="hero-card card-3">
-            <i className="fas fa-mobile-alt" aria-hidden="true"></i>
-            <span>App Dev</span>
+          <div className="stage-chip chip-2">
+            <i className="fas fa-wifi" aria-hidden="true"></i> Works offline
           </div>
         </div>
       </div>
