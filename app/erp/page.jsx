@@ -91,7 +91,7 @@ export default function ErpPage() {
               <p className="erp-note">
                 <i className="fas fa-circle-check" aria-hidden="true"></i> Live on Google Play &nbsp;·&nbsp;
                 <i className="fas fa-circle-check" aria-hidden="true"></i> Windows desktop app &nbsp;·&nbsp;
-                <i className="fas fa-circle-check" aria-hidden="true"></i> 7-day free trial on Starter &amp; Growth
+                <i className="fas fa-circle-check" aria-hidden="true"></i> 7-day free trial on Growth
               </p>
             </div>
             <div className="erp-hero-phones" aria-hidden="false">
@@ -228,7 +228,7 @@ export default function ErpPage() {
               <h2 className="section-title">
                 Simple plans, <span className="highlight">honest prices</span>
               </h2>
-              <p className="erp-sub">All prices exclude 18% GST. Try Starter or Growth free for 7 days. Growth&apos;s trial needs no card and never auto-charges.</p>
+              <p className="erp-sub">All prices exclude 18% GST. Try Growth free for 7 days. The trial needs no card and never auto-charges.</p>
             </div>
             <ErpPricing />
 
@@ -245,9 +245,7 @@ export default function ErpPage() {
               ))}
             </div>
             <p className="erp-fine">
-              Starter is a one-time desktop license (year 1 includes activation); updates and continued activation need the
-              annual renewal. Growth and above are recurring subscriptions. Annual prepay on Growth saves about 17% versus
-              monthly. Pricing is indicative and confirmed after we understand your branches, users and modules.
+              Starter is an annual desktop licence that includes activation, software updates and email support. Staff users shown are in addition to the account administrator, who is always included at no charge. Growth, Business and Pro are subscriptions billed monthly or yearly; yearly prepay is about 17% cheaper. Pricing is indicative and confirmed after we understand your branches, users and modules.
             </p>
           </div>
         </section>

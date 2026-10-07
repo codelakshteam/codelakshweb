@@ -7,7 +7,7 @@ function getBotResponse(message) {
   if (lower.includes('hello') || lower.includes('hi'))
     return 'Hello! 👋 Welcome to CodeLaksh! How can I help you today?';
   if (lower.includes('erp') || lower.includes('billing software') || lower.includes('invoice'))
-    return 'CodeLaksh ERP: billing, inventory, accounting & payments. Starter Rs. 3,500 one-time + Rs. 1,499/yr, Growth Rs. 599/month (7-day free trial on Starter and Growth), Restaurant/Hotel Pro Rs. 1,999/month per outlet, Enterprise from Rs. 4,999/month (excl. GST). Details: codelaksh.in/erp. Android app on Google Play.';
+    return 'CodeLaksh ERP: billing, inventory, accounting & payments. Starter Rs. 3,499/year, Growth Rs. 499/month (7-day free trial), Business Rs. 999/month, Pro Rs. 1,999/month (excl. GST). Yearly prepay saves ~17%. Details: codelaksh.in/erp. Android app on Google Play.';
   if (lower.includes('price') || lower.includes('cost'))
     return 'Our services vary based on requirements. Call +91-9834684866 or email codelaksh@gmail.com for a quote.';
   if (lower.includes('website') || lower.includes('web'))

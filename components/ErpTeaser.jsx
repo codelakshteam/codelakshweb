@@ -17,7 +17,7 @@ export default function ErpTeaser() {
           <ul className="erp-teaser-points">
             <li><i className="fas fa-check" aria-hidden="true"></i> GST-ready billing &amp; barcode scanning</li>
             <li><i className="fas fa-check" aria-hidden="true"></i> Inventory, purchases &amp; accounting</li>
-            <li><i className="fas fa-check" aria-hidden="true"></i> 7-day free trial on Starter &amp; Growth, Growth from Rs. 599/month</li>
+            <li><i className="fas fa-check" aria-hidden="true"></i> 7-day free trial on Growth, from Rs. 499/month</li>
           </ul>
           <div className="erp-cta">
             <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className="btn btn-play">

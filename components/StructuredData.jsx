@@ -63,9 +63,13 @@ const data = {
       downloadUrl: 'https://play.google.com/store/apps/details?id=com.codelaksh.erp',
       publisher: { '@id': `${siteUrl}/#organization` },
       offers: [
-        { '@type': 'Offer', name: 'Growth (monthly)', price: '599', priceCurrency: 'INR' },
-        { '@type': 'Offer', name: 'Growth (yearly)', price: '5999', priceCurrency: 'INR' },
-        { '@type': 'Offer', name: 'Starter (one-time)', price: '3500', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Starter (yearly)', price: '3499', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Growth (monthly)', price: '499', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Growth (yearly)', price: '4999', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Business (monthly)', price: '999', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Business (yearly)', price: '9999', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Pro (monthly)', price: '1999', priceCurrency: 'INR' },
+        { '@type': 'Offer', name: 'Pro (yearly)', price: '19999', priceCurrency: 'INR' },
       ],
     },
     {

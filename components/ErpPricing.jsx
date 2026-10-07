@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { plans } from '@/components/erpData';
 
-// Plan cards with a Monthly / Yearly switch. Only Growth has a yearly price (Rs. 5,999); the other plans keep their
-// own billing, and say so.
+// Plan cards with a Monthly / Yearly switch. Growth, Business and Pro have a yearly price; Starter is already
+// billed yearly.
 export default function ErpPricing() {
   const [billing, setBilling] = useState('monthly');
 
@@ -19,7 +19,7 @@ export default function ErpPricing() {
             Yearly
           </button>
         </div>
-        <span className="billing-note">Growth saves about 17% when paid yearly. Other plans keep their own billing.</span>
+        <span className="billing-note">Growth, Business and Pro save about 17% when paid yearly. Starter is always billed yearly.</span>
       </div>
 
       <div className="erp-plan-grid">
