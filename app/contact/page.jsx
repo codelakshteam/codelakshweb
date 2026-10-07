@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Chatbot from '@/components/Chatbot';
-import ContactExperience from '@/components/cinematic/ContactExperience';
+import ContactExperience from '@/components/film/ContactExperience';
 import JsonLd from '@/components/JsonLd';
 import PageHero from '@/components/PageHero';
 import { SITE, absoluteUrl, breadcrumbSchema, pageMetadata } from '@/lib/seo';

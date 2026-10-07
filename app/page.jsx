@@ -1,17 +1,16 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Chatbot from '@/components/Chatbot';
-import CinematicHero from '@/components/cinematic/CinematicHero';
-import Statement from '@/components/cinematic/Statement';
-import TechnologyUniverse from '@/components/cinematic/TechnologyUniverse';
-import ServiceExperience from '@/components/cinematic/ServiceExperience';
-import CodeToProduct from '@/components/cinematic/CodeToProduct';
-import ProjectShowcase from '@/components/cinematic/ProjectShowcase';
-import ProductLaunch from '@/components/cinematic/ProductLaunch';
-import TechConstellation from '@/components/cinematic/TechConstellation';
-import ProcessTimeline from '@/components/cinematic/ProcessTimeline';
-import CompanyStory from '@/components/cinematic/CompanyStory';
-import ContactExperience from '@/components/cinematic/ContactExperience';
+import Stage from '@/components/film/Stage';
+import Hero from '@/components/film/Hero';
+import Sweep from '@/components/film/Sweep';
+import Spec from '@/components/film/Spec';
+import Systems from '@/components/film/Systems';
+import Industries from '@/components/film/Industries';
+import Work from '@/components/film/Work';
+import Process from '@/components/film/Process';
+import Studio from '@/components/film/Studio';
+import ContactExperience from '@/components/film/ContactExperience';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
@@ -21,22 +20,26 @@ export const metadata = pageMetadata({
   path: '/',
 });
 
-// The cinematic home page. Every section is real, server-rendered HTML; the 3D and canvas layers are decoration.
+// One continuous film: a fixed stage (the scene) behind dark acts, light acts that cover it, and light-sweep transitions
+// between them. Every section is server-rendered HTML; the stage is decoration.
 export default function Home() {
   return (
     <>
+      <Stage />
       <Header />
       <main id="main">
-        <CinematicHero />
-        <Statement />
-        <TechnologyUniverse />
-        <ServiceExperience />
-        <CodeToProduct />
-        <ProjectShowcase />
-        <ProductLaunch />
-        <TechConstellation />
-        <ProcessTimeline />
-        <CompanyStory />
+        <Hero />
+        <Sweep id="statement" to="light" eyebrow="What we do" meta="01 / Statement" lines={["WE DON’T", 'JUST WRITE', 'CODE.', 'WE ENGINEER', 'DIGITAL', 'SYSTEMS.']} />
+        <Spec />
+        <Sweep id="engineer" to="dark" eyebrow="Engineering systems" meta="02 / Systems" lines={['WHAT WE', 'ENGINEER.']} />
+        <Systems />
+        <Sweep id="business" to="light" eyebrow="Industries" meta="03 / Business" lines={['BUILT AROUND', 'REAL BUSINESS.']} />
+        <Industries />
+        <Sweep id="shipped" to="dark" eyebrow="Selected work" meta="04 / Products" lines={['BUILT.', 'SHIPPED.', 'LIVE.']} />
+        <Work />
+        <Sweep id="method" to="light" eyebrow="How we build" meta="05 / Method" lines={['FROM PROBLEM', 'TO PRODUCTION.']} />
+        <Process />
+        <Studio />
         <ContactExperience />
       </main>
       <Footer />

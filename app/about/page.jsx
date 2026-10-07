@@ -120,9 +120,7 @@ export default function AboutPage() {
             </ol>
             <h2 className="pg-h2">Technology</h2>
             <p>
-              We work with React, Next.js, Node.js, Python and TypeScript for web and back-end systems, Android, iOS and
-              cross-platform tools for mobile, and AWS, Azure and Google Cloud for hosting. We choose tools to fit the
-              project rather than the other way round.
+              We work with Java, .NET, Node.js and Python on the back end, React, Angular and Next.js on the web, React Native for mobile, and GCP, AWS or self-hosted servers for hosting, with GenAI and RAG pipelines across several LLM and speech providers. We have built across event management, fintech, hospitality and HRM SaaS, and e-commerce products. We choose tools to fit the project rather than the other way round.
             </p>
             <h2 className="pg-h2">Our work and where to find us</h2>
             <p>

@@ -1,1 +1,1 @@
-export { default } from '@/components/cinematic/Navigation';
+export { default } from '@/components/film/Navigation';

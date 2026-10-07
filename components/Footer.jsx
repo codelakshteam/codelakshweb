@@ -1,1 +1,1 @@
-export { default } from '@/components/cinematic/CinematicFooter';
+export { default } from '@/components/film/Footer';

@@ -1,22 +1,29 @@
-import { Space_Grotesk, Inter } from 'next/font/google';
+import { Archivo, Inter, IBM_Plex_Mono } from 'next/font/google';
 import StructuredData from '@/components/StructuredData';
 import RevealOnScroll from '@/components/RevealOnScroll';
-import Runtime from '@/components/cinematic/Runtime';
+import Runtime from '@/components/film/Runtime';
 import './globals.css';
-import './cinematic.css';
+import './film.css';
 
 // Display face for the big editorial type, plain sans for reading. Both are self-hosted by next/font.
-const display = Space_Grotesk({
+const display = Archivo({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  axes: ['wdth'],
   variable: '--font-display',
   display: 'swap',
 });
 
 const body = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '500'],
   variable: '--font-body',
+  display: 'swap',
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-mono',
   display: 'swap',
 });
 
@@ -68,10 +75,10 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`} data-theme="dark" suppressHydrationWarning>
+    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`} data-theme="dark" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        <script dangerouslySetInnerHTML={{ __html: "var d=document.documentElement;d.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('rm')" }} />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"

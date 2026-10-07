@@ -50,22 +50,22 @@ export default function ContactExperience({ id = 'contact', heading = 'h2' }) {
   };
 
   return (
-    <section className="cx-contact" id={id} aria-labelledby="contact-title">
-      <div className="cx-contact-glow" aria-hidden="true"></div>
-      <div className="cx-wrap">
-        <p className="cx-eyebrow rv">Start a conversation</p>
-        <Heading id="contact-title" className="cx-mega-2 rv">
+    <section className="fm-contact" id={id} data-tone="light" aria-labelledby="contact-title">
+      <div className="fm-contact-glow" aria-hidden="true"></div>
+      <div className="fm-wrap">
+        <p className="fm-label rv">Start a conversation</p>
+        <Heading id="contact-title" className="fm-mega fm-mega-contact rv">
           LET&rsquo;S BUILD
           <br />
-          <span className="cx-grad">WHAT&rsquo;S NEXT.</span>
+          <span className="">WHAT&rsquo;S NEXT.</span>
         </Heading>
-        <div className="cx-contact-grid">
+        <div className="fm-contact-grid">
           <div className="rv">
-            <p className="cx-contact-lede">
+            <p className="fm-contact-lede">
               Have an idea? Have a problem? Need a digital product? Let&rsquo;s talk. Tell us what you are building and we will reply
               with questions, a suggested approach and a written estimate.
             </p>
-            <ul className="cx-direct">
+            <ul className="fm-direct">
               <li>
                 <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
               </li>
@@ -78,15 +78,15 @@ export default function ContactExperience({ id = 'contact', heading = 'h2' }) {
               <li>Mon to Sat, 10:00 to 19:00 IST</li>
             </ul>
           </div>
-          <form className="cx-form rv" onSubmit={submit} noValidate>
+          <form className="fm-form rv" onSubmit={submit} noValidate>
             {done ? (
-              <div className="cx-done" role="status">
+              <div className="fm-done" role="status">
                 <h3>Thank you.</h3>
                 <p>We have your message and will get back to you soon.</p>
               </div>
             ) : (
               <>
-                <div className="cx-form-top" aria-hidden="true">
+                <div className="fm-form-top" aria-hidden="true">
                   <span>{String(step + 1).padStart(2, '0')} / 03</span>
                   <i style={{ '--w': `${((step + 1) / 3) * 100}%` }}></i>
                 </div>
@@ -94,7 +94,7 @@ export default function ContactExperience({ id = 'contact', heading = 'h2' }) {
                   {step === 0 && (
                     <fieldset>
                       <legend>WHAT ARE YOU BUILDING?</legend>
-                      <div className="cx-types">
+                      <div className="fm-types">
                         {contactTypes.map((t) => (
                           <button key={t} type="button" aria-pressed={types.includes(t)} className={types.includes(t) ? 'is-on' : ''} onClick={() => toggle(t)}>
                             {t}
@@ -105,39 +105,39 @@ export default function ContactExperience({ id = 'contact', heading = 'h2' }) {
                   )}
                   {step === 1 && (
                     <div>
-                      <label htmlFor="cx-msg">TELL US ABOUT IT</label>
-                      <textarea id="cx-msg" rows={5} value={message} onChange={(e) => setMessage(e.target.value)} placeholder="What problem are you solving? Who is it for?" />
+                      <label htmlFor="fm-msg">TELL US ABOUT IT</label>
+                      <textarea id="fm-msg" rows={5} value={message} onChange={(e) => setMessage(e.target.value)} placeholder="What problem are you solving? Who is it for?" />
                     </div>
                   )}
                   {step === 2 && (
-                    <div className="cx-fields">
-                      <p className="cx-legend">CONTACT DETAILS</p>
-                      <label htmlFor="cx-name">Name</label>
-                      <input id="cx-name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} />
-                      <label htmlFor="cx-email">Email</label>
-                      <input id="cx-email" type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                      <label htmlFor="cx-phone">Phone (optional)</label>
-                      <input id="cx-phone" type="tel" inputMode="numeric" autoComplete="tel-national" value={phone} onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))} />
+                    <div className="fm-fields">
+                      <p className="fm-legend">CONTACT DETAILS</p>
+                      <label htmlFor="fm-name">Name</label>
+                      <input id="fm-name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} />
+                      <label htmlFor="fm-email">Email</label>
+                      <input id="fm-email" type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                      <label htmlFor="fm-phone">Phone (optional)</label>
+                      <input id="fm-phone" type="tel" inputMode="numeric" autoComplete="tel-national" value={phone} onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))} />
                     </div>
                   )}
                 </div>
                 {error && (
-                  <p className="cx-error" role="alert">
+                  <p className="fm-error" role="alert">
                     {error}
                   </p>
                 )}
-                <div className="cx-form-actions">
+                <div className="fm-form-actions">
                   {step > 0 && (
-                    <button type="button" className="cx-pill" onClick={() => setStep(step - 1)}>
+                    <button type="button" className="fm-btn" onClick={() => setStep(step - 1)}>
                       Back
                     </button>
                   )}
                   {step < 2 ? (
-                    <button type="button" className="cx-pill cx-pill-solid cx-magnetic" onClick={next}>
+                    <button type="button" className="fm-btn fm-btn-solid" onClick={next}>
                       Continue <span aria-hidden="true">&rarr;</span>
                     </button>
                   ) : (
-                    <button type="submit" className="cx-pill cx-pill-solid cx-magnetic" disabled={sending}>
+                    <button type="submit" className="fm-btn fm-btn-solid" disabled={sending}>
                       {sending ? 'Sending...' : "LET'S BUILD IT"} <span aria-hidden="true">&rarr;</span>
                     </button>
                   )}

@@ -3,14 +3,13 @@ import Footer from '@/components/Footer';
 import Chatbot from '@/components/Chatbot';
 import JsonLd from '@/components/JsonLd';
 import PageHero from '@/components/PageHero';
-import TechConstellation from '@/components/cinematic/TechConstellation';
-import TechnologyUniverse from '@/components/cinematic/TechnologyUniverse';
+import TechIndex from '@/components/film/TechIndex';
 import { SITE, absoluteUrl, breadcrumbSchema, pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
   title: 'Technology Stack and Engineering | CodeLaksh',
   description:
-    'The technologies CodeLaksh builds with: React, Next.js, TypeScript, Node.js, Python, AI, Android, iOS, Electron and AWS, Azure and Google Cloud, and how we choose them.',
+    'The technologies CodeLaksh builds with: Java, .NET, Node.js, Python, React, Angular, React Native, RAG and LLM integrations, GCP and AWS, and how we choose them.',
   path: '/technology',
 });
 
@@ -49,8 +48,11 @@ export default function TechnologyPage() {
             </p>
           </div>
         </section>
-        <TechConstellation heading={false} />
-        <TechnologyUniverse />
+        <section className="erp-section" data-tone="light" style={{ background: 'var(--bg)' }}>
+          <div className="container">
+            <TechIndex />
+          </div>
+        </section>
       </main>
       <Footer />
       <Chatbot />
