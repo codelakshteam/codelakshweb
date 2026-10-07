@@ -4,12 +4,12 @@ import Footer from '@/components/Footer';
 import Chatbot from '@/components/Chatbot';
 import ErpSubnav from '@/components/ErpSubnav';
 import ErpPricing from '@/components/ErpPricing';
-import { PLAY_STORE_URL, erpHighlights, mobileShots, desktopShots, addOns, erpFaqs } from '@/components/erpData';
+import { PLAY_STORE_URL, erpHighlights, advancedFeatures, industryModules, mobileShots, desktopShots, addOns, erpFaqs } from '@/components/erpData';
 
 export const metadata = {
   title: { absolute: 'CodeLaksh ERP: GST Billing, Inventory & Accounting Software for India' },
   description:
-    'GST billing, inventory & accounting ERP for Indian shops, restaurants and hotels. Works offline on desktop, Android app on Google Play. 7-day free trial.',
+    'GST billing, inventory & accounting ERP for Indian shops, restaurants and hotels. Multi-branch, roles, live sync and full accounting. Works offline on desktop, Android app on Google Play. 7-day free trial.',
   keywords: [
     'ERP software India',
     'GST billing software',
@@ -113,6 +113,52 @@ export default function ErpPage() {
             </div>
             <div className="erp-feature-grid">
               {erpHighlights.map((item) => (
+                <div className="service-card" key={item.title}>
+                  <div className="service-icon">
+                    <i className={`fas ${item.icon}`} aria-hidden="true"></i>
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="erp-section erp-alt" id="advanced">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-subtitle">Advanced features</span>
+              <h2 className="section-title">
+                Power that <span className="highlight">grows with you</span>
+              </h2>
+              <p className="erp-sub">Multi-branch control, accounting, sync and approvals, built into the same app.</p>
+            </div>
+            <div className="erp-feature-grid">
+              {advancedFeatures.map((item) => (
+                <div className="service-card" key={item.title}>
+                  <div className="service-icon">
+                    <i className={`fas ${item.icon}`} aria-hidden="true"></i>
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="erp-section" id="industries">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-subtitle">Industry modules</span>
+              <h2 className="section-title">
+                Made for <span className="highlight">your kind of business</span>
+              </h2>
+              <p className="erp-sub">Pick your business type and get the screens and product fields it needs.</p>
+            </div>
+            <div className="erp-feature-grid">
+              {industryModules.map((item) => (
                 <div className="service-card" key={item.title}>
                   <div className="service-icon">
                     <i className={`fas ${item.icon}`} aria-hidden="true"></i>

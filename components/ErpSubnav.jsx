@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 
 const links = [
   { id: 'features', label: 'Features' },
+  { id: 'advanced', label: 'Advanced' },
+  { id: 'industries', label: 'Industries' },
   { id: 'mobile', label: 'Mobile app' },
   { id: 'desktop', label: 'Desktop app' },
   { id: 'pricing', label: 'Pricing' },

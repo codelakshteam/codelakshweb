@@ -16,6 +16,33 @@ export const erpHighlights = [
   { icon: 'fa-credit-card', title: 'Get paid faster', text: 'Collect payments through Razorpay or PhonePe and share receipts instantly.' },
 ];
 
+export const advancedFeatures = [
+  { icon: 'fa-building', title: 'Multi-branch & counters', text: 'Run several branches and billing counters under one account, with branch stock transfers, shifts and day closing.' },
+  { icon: 'fa-user-shield', title: 'Roles, permissions & approvals', text: 'Custom roles with fine-grained permissions, plus an approval flow for stock adjustments and modification requests.' },
+  { icon: 'fa-rotate', title: 'Live multi-device sync', text: 'Offline-first billing with cloud sync, live updates on every signed-in device, backup and restore.' },
+  { icon: 'fa-scale-balanced', title: 'Full accounting', text: 'Cash and bank books, transfers, journal, trial balance, income statement and balance sheet.' },
+  { icon: 'fa-chart-line', title: 'Business insights & reports', text: 'Dashboard insights; sales, purchase, stock, GST and profit reports, party statements and CSV export.' },
+  { icon: 'fa-barcode', title: 'Barcodes, labels & bulk tools', text: 'Barcode label sheets, alternate barcodes, bulk import / export and bulk price updates.' },
+  { icon: 'fa-boxes-packing', title: 'Batches, expiry & stock control', text: 'Batch and expiry (FEFO) tracking, stock count with approval, reorder centre, dead-stock and expiry reports.' },
+  { icon: 'fa-tags', title: 'Price lists, schemes & coupons', text: 'Retail and wholesale price lists, schemes, coupon codes, bill discounts and loyalty points.' },
+  { icon: 'fa-book-open', title: 'Khata, dues & purchases', text: 'Customer khata with credit limits, supplier ledger, purchase orders with GRN, returns and expenses.' },
+  { icon: 'fa-paper-plane', title: 'e-Bills & WhatsApp / SMS', text: 'Send invoices by email or WhatsApp and order alerts by SMS, with prepaid credit packs.' },
+  { icon: 'fa-credit-card', title: 'Online payments & QR', text: 'Razorpay / PhonePe payments with shareable receipts, and QR ordering for tables.' },
+  { icon: 'fa-language', title: 'Multi-language', text: 'Use the app in English, Hindi, Marathi or Gujarati.' },
+];
+
+export const industryModules = [
+  { icon: 'fa-utensils', title: 'Restaurant & Cafe', text: 'Tables, orders, KOT, kitchen display, reservations, QR ordering, menu and restaurant reports.' },
+  { icon: 'fa-hotel', title: 'Hotel', text: 'Room types and a live room board, bookings with double-booking protection, check-in / check-out billed to an invoice.' },
+  { icon: 'fa-cart-shopping', title: 'Kirana & Supermarket', text: 'Fast barcode POS, units and conversions, FEFO batches, price lists, returns, stock transfers, Khata and day closing.' },
+  { icon: 'fa-cookie-bite', title: 'Sweet Mart', text: 'Fulfilment counters (sweet, farsan, pani puri), one bill with a token per counter, counter screens and slips.' },
+  { icon: 'fa-bread-slice', title: 'Bakery', text: 'Daily production plan, what came out, what was wasted, and waste by item, with weighed billing.' },
+  { icon: 'fa-cake-candles', title: 'Cake Shop', text: 'Custom cake order book with flavour, weight, message, delivery date and advance payment.' },
+  { icon: 'fa-pills', title: 'Medical Store', text: 'Batch, expiry and manufacturer fields, expiry control with value at risk, and billing blocks expired medicine.' },
+  { icon: 'fa-scissors', title: 'Salon & Spa', text: 'Service menu, stylists, appointments with double-booking protection, billed straight to an invoice.' },
+  { icon: 'fa-shirt', title: 'Clothing & Electronics', text: 'Size, colour and variant fields for clothing; serial number, IMEI, model and warranty for electronics.' },
+];
+
 export const mobileShots = [
   { src: '/erp-assets/mobile/billing.webp', alt: 'CodeLaksh ERP mobile app: home dashboard with revenue, dues and quick actions' },
   { src: '/erp-assets/mobile/tables.webp', alt: 'CodeLaksh ERP mobile app: real-time restaurant table management' },
@@ -44,12 +71,14 @@ export const plans = [
     badge: '7-day free trial',
     features: [
       'Billing / invoicing (GST-ready)',
-      'Inventory & products',
+      'Inventory, products & barcode labels',
       'Customers & suppliers',
+      'Bulk import / export',
       '1 branch / counter',
       'Works offline (desktop)',
       'Basic reports',
       'Admin login',
+      'English, Hindi, Marathi & Gujarati',
       'Email support',
     ],
     cta: 'Start free trial',
@@ -66,12 +95,15 @@ export const plans = [
     yearly: { price: 'Rs. 5,999', cadence: 'per year', extra: 'About Rs. 500/month, saves ~17%' },
     features: [
       'Everything in Starter',
-      'Cloud sync & mobile app',
-      'Accounting & cash/bank books',
-      'Purchases & supplier ledger',
-      'Advanced reports (sales, stock, GST)',
+      'Cloud sync, live multi-device sync & mobile app',
+      'Cloud backup & restore',
+      'Accounting: cash/bank books, journal, P&L, balance sheet',
+      'Purchases, supplier ledger & returns',
+      'Advanced reports (sales, stock, GST, profit)',
+      'Business insights dashboard',
       'Online payments (Razorpay / PhonePe)',
-      'Admin + 1 staff user',
+      'e-Bills by email / WhatsApp (credit packs)',
+      'Admin + 1 staff user, with roles',
       'Email + chat support',
     ],
     cta: 'Get the app',
@@ -87,8 +119,10 @@ export const plans = [
     yearly: { extra: 'Billed monthly, per outlet' },
     features: [
       'Everything in Growth',
-      'KOT, QR ordering & reservations',
-      'Table management',
+      'KOT, kitchen display & table management',
+      'QR ordering & reservations',
+      'Hotel rooms, bookings & check-in / check-out',
+      'Cafe profile and menu management',
       'Admin + 3 staff users',
       'Priority support',
     ],
@@ -103,11 +137,12 @@ export const plans = [
     extra: 'Custom quote',
     features: [
       'Everything in Restaurant / Hotel Pro',
-      'Unlimited branches',
+      'Unlimited branches & branch stock transfers',
       'Multi-org / multi-outlet management',
-      'Custom roles & permissions',
+      'Custom roles, permissions & approval workflows',
+      'Industry modules: Kirana, Sweet Mart, Bakery, Cake Shop, Medical, Salon, Clothing, Electronics',
+      'Batch / expiry (FEFO), price lists & schemes',
       'Advanced + custom reports',
-      'Restaurant modules optional',
       'Dedicated support',
     ],
     cta: 'Talk to us',
@@ -118,6 +153,8 @@ export const plans = [
 export const addOns = [
   { name: 'Additional branch / outlet', price: 'Rs. 499/month', on: 'Growth, Restaurant/Hotel Pro' },
   { name: 'WhatsApp / SMS invoice & order alerts', price: 'Rs. 299/month (500 credits)', on: 'All plans' },
+  { name: 'Additional staff user', price: 'Per user, per month', on: 'Growth and above' },
+  { name: 'e-Bill credit packs (500 / 1,000 / 5,000)', price: 'Pay per pack, no monthly commitment', on: 'All plans' },
   { name: 'Payment gateway setup (Razorpay / PhonePe)', price: 'Rs. 999 one-time', on: 'Starter (free on Growth and above)' },
   { name: 'Data migration & onboarding (from Tally / Vyapar / manual books)', price: 'Rs. 2,999 one-time', on: 'All plans' },
   { name: 'Priority AMC (faster support, on-site visit credits)', price: 'Rs. 1,999/year', on: 'Starter' },
@@ -151,6 +188,14 @@ export const erpFaqs = [
   {
     q: 'Can I move my data from Tally, Vyapar or manual books?',
     a: 'Yes. A data migration and onboarding add-on (Rs. 2,999 one-time) moves your data from Tally, Vyapar or manual books.',
+  },
+  {
+    q: 'Which advanced features does CodeLaksh ERP have?',
+    a: 'Multi-branch and multi-counter billing, roles and permissions with approvals, live multi-device cloud sync with backup and restore, full accounting (journal, trial balance, P&L, balance sheet), batch and expiry tracking, price lists and schemes, Khata and supplier ledgers, purchase orders with GRN, e-Bills by email or WhatsApp, online payments, and English, Hindi, Marathi and Gujarati languages.',
+  },
+  {
+    q: 'Which businesses does it support?',
+    a: 'Restaurants, cafes, hotels, kirana stores and supermarkets, sweet marts, bakeries, cake shops, medical stores, salons, and clothing and electronics shops. Each has its own module with the screens and fields that business needs.',
   },
   {
     q: 'Is there a mobile app?',
