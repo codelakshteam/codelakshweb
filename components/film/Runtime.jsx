@@ -3,7 +3,7 @@
 import Lenis from 'lenis';
 import { useEffect, useRef } from 'react';
 import { film } from '@/lib/film';
-import { MUSIC_DELAY_MS, initMusic, startMusic } from '@/lib/music';
+import { initMusic, startMusic } from '@/lib/music';
 import { initSound, play, unlock } from '@/lib/sound';
 
 // Behaviour layered over the HTML: smooth scroll with velocity, the precision reticle cursor, the shutter page
@@ -26,26 +26,13 @@ export default function Runtime() {
     // ---- interface sound (see lib/sound.js): unlocked by the first gesture ----
     initSound();
     initMusic();
-    // Music begins MUSIC_DELAY_MS after the visitor's session started (kept across pages), and only once a gesture has
-    // unlocked audio. Interface sounds are unlocked immediately.
-    let t0 = Date.now();
-    try {
-      t0 = Number(window.sessionStorage.getItem('cl-t0')) || t0;
-      window.sessionStorage.setItem('cl-t0', String(t0));
-    } catch {
-      /* ignore */
-    }
-    let gestured = false;
-    const tryMusic = () => {
-      if (gestured && Date.now() - t0 >= MUSIC_DELAY_MS) startMusic();
-    };
+    // The score starts as soon as the page loads. Browsers keep audio suspended until the visitor interacts once, so it
+    // becomes audible at the first click, tap or key press (and then keeps playing across the page).
     const gesture = () => {
       unlock();
-      gestured = true;
-      tryMusic();
+      startMusic();
     };
-    const musicTimer = window.setTimeout(tryMusic, Math.max(0, MUSIC_DELAY_MS - (Date.now() - t0)) + 50);
-    off.push(() => window.clearTimeout(musicTimer));
+    startMusic();
     const INTERACTIVE = 'a[href], button, summary, [role="tab"], label[for]';
     const onSoundClick = (e) => {
       const t = e.target.closest && e.target.closest(INTERACTIVE);
@@ -58,13 +45,11 @@ export default function Runtime() {
       lastHover = t;
       if (t && fine) play('hover');
     };
-    window.addEventListener('pointerdown', gesture, { once: false, passive: true });
-    window.addEventListener('keydown', gesture, { passive: true });
+    ['pointerdown', 'keydown', 'touchend', 'click'].forEach((ev) => window.addEventListener(ev, gesture, { passive: true }));
     document.addEventListener('click', onSoundClick);
     document.addEventListener('mouseover', onSoundHover, { passive: true });
     off.push(() => {
-      window.removeEventListener('pointerdown', gesture);
-      window.removeEventListener('keydown', gesture);
+      ['pointerdown', 'keydown', 'touchend', 'click'].forEach((ev) => window.removeEventListener(ev, gesture));
       document.removeEventListener('click', onSoundClick);
       document.removeEventListener('mouseover', onSoundHover);
     });
