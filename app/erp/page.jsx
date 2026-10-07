@@ -89,7 +89,7 @@ export default function ErpPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
-      <main>
+      <main id="main">
         <section className="erp-hero">
           <div className="container erp-hero-grid">
             <div className="erp-hero-copy">

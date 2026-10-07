@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Chatbot from '@/components/Chatbot';
-import Contact from '@/components/Contact';
+import ContactExperience from '@/components/cinematic/ContactExperience';
 import JsonLd from '@/components/JsonLd';
 import PageHero from '@/components/PageHero';
 import { SITE, absoluteUrl, breadcrumbSchema, pageMetadata } from '@/lib/seo';
@@ -10,7 +10,7 @@ import { services } from '@/lib/services';
 export const metadata = pageMetadata({
   title: 'Contact CodeLaksh | Software Development Company in India',
   description:
-    'Contact CodeLaksh in Aurangabad, Maharashtra to discuss custom software, web or mobile apps, ERP, AI or cloud. Call +91-9834684866 or send your requirement online.',
+    'Contact CodeLaksh in Chhatrapati Sambhajinagar (Aurangabad) to discuss custom software, apps, ERP, AI or cloud. Call +91-9834684866 or send your requirement.',
   path: '/contact',
 });
 
@@ -36,7 +36,7 @@ export default function ContactPage() {
     <>
       <JsonLd nodes={schema} />
       <Header />
-      <main>
+      <main id="main">
         <PageHero
           crumbs={crumbs}
           label="Contact Us"
@@ -63,7 +63,7 @@ export default function ContactPage() {
                 {SITE.city} and across India.
               </p>
               <p>
-                Read <a href="/about">about CodeLaksh</a> or see <a href="/locations/aurangabad">how we work from Aurangabad</a>.
+                Read <a href="/about">about CodeLaksh</a> or see <a href="/locations/aurangabad">how we work from Chhatrapati Sambhajinagar (Aurangabad)</a>.
               </p>
             </div>
             <div className="pg-prose">
@@ -79,7 +79,7 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
-        <Contact />
+        <ContactExperience />
       </main>
       <Footer />
       <Chatbot />

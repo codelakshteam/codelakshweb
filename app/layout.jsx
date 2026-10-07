@@ -1,19 +1,22 @@
-import { Montserrat, Poppins } from 'next/font/google';
+import { Space_Grotesk, Inter } from 'next/font/google';
 import StructuredData from '@/components/StructuredData';
 import RevealOnScroll from '@/components/RevealOnScroll';
+import Runtime from '@/components/cinematic/Runtime';
 import './globals.css';
+import './cinematic.css';
 
-const montserrat = Montserrat({
+// Display face for the big editorial type, plain sans for reading. Both are self-hosted by next/font.
+const display = Space_Grotesk({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-montserrat',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-display',
   display: 'swap',
 });
 
-const poppins = Poppins({
+const body = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-poppins',
+  weight: ['400', '500', '600'],
+  variable: '--font-body',
   display: 'swap',
 });
 
@@ -60,20 +63,15 @@ export const metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#0483d2',
+  themeColor: '#050505',
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${poppins.variable}`} data-theme="dark" suppressHydrationWarning>
+    <html lang="en" className={`${display.variable} ${body.variable}`} data-theme="dark" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "try{var t=localStorage.getItem('cl-theme');document.documentElement.dataset.theme=t==='light'?'light':'dark'}catch(e){}",
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -83,6 +81,7 @@ export default function RootLayout({ children }) {
         <StructuredData />
         {children}
         <RevealOnScroll />
+        <Runtime />
       </body>
     </html>
   );

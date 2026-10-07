@@ -33,7 +33,7 @@ export default function ServicePage({ service }) {
     <>
       <JsonLd nodes={schema} />
       <Header />
-      <main>
+      <main id="main">
         <PageHero crumbs={crumbs} label="Our Services" h1={service.h1} lead={service.lead}>
           <div className="erp-cta pg-hero-cta">
             <a href="/contact" className="btn btn-primary">
@@ -117,7 +117,7 @@ export default function ServicePage({ service }) {
             </div>
             <p className="pg-note">
               CodeLaksh is a software development company in {SITE.city} ({SITE.cityAlt}), {SITE.region}, India.{' '}
-              <a href="/about">About CodeLaksh</a> · <a href="/locations/aurangabad">Software development in Aurangabad</a>
+              <a href="/about">About CodeLaksh</a> · <a href="/locations/aurangabad">Software development in Chhatrapati Sambhajinagar (Aurangabad)</a>
             </p>
           </div>
         </section>

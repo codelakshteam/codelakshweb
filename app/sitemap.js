@@ -15,6 +15,7 @@ export default function sitemap() {
     ...services.map((service) => entry(`/services/${service.slug}`, 'monthly', 0.8)),
     entry('/erp', 'monthly', 0.9),
     entry('/about', 'monthly', 0.7),
+    entry('/technology', 'monthly', 0.6),
     entry('/portfolio', 'monthly', 0.7),
     ...projects.map((project) => entry(`/portfolio/${project.slug}`, 'monthly', 0.6)),
     entry('/locations/aurangabad', 'monthly', 0.6),

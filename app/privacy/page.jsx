@@ -18,7 +18,7 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main">
         <section className="legal-page">
           <div className="container">
             <div className="legal-header">
@@ -44,7 +44,7 @@ export default function PrivacyPolicy() {
 
               <h2>1. Who We Are</h2>
               <p>
-                CodeLaksh is a software development company based in Aurangabad, Maharashtra,
+                CodeLaksh is a software development company based in Chhatrapati Sambhajinagar (Aurangabad), Maharashtra,
                 India. CodeLaksh ERP is built for small and medium businesses (retail, kirana,
                 clothing, medical, electronics, restaurant, and hospitality) to manage billing,
                 inventory, customers, staff, and payments.
@@ -237,7 +237,7 @@ export default function PrivacyPolicy() {
               <p>
                 <strong>CodeLaksh</strong>
                 <br />
-                Sangram Nagar, Aurangabad, Maharashtra, India
+                Sangram Nagar, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra, India
                 <br />
                 Email: <a href="mailto:codelaksh@gmail.com">codelaksh@gmail.com</a>
                 <br />

@@ -43,7 +43,7 @@ export default function PortfolioPage() {
     <>
       <JsonLd nodes={schema} />
       <Header />
-      <main>
+      <main id="main">
         <PageHero
           crumbs={crumbs}
           label="Our Work"

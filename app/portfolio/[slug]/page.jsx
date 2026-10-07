@@ -63,7 +63,7 @@ export default function ProjectPage({ params }) {
     <>
       <JsonLd nodes={schema} />
       <Header />
-      <main>
+      <main id="main">
         <PageHero crumbs={crumbs} label={project.category} h1={project.h1} lead={project.summary} />
 
         <section className="erp-section">

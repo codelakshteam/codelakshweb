@@ -1,15 +1,17 @@
 import Header from '@/components/Header';
-import Hero from '@/components/Hero';
-import ProofStrip from '@/components/ProofStrip';
-import About from '@/components/About';
-import Services from '@/components/Services';
-import ErpTeaser from '@/components/ErpTeaser';
-import BrandKidodom from '@/components/BrandKidodom';
-import Portfolio from '@/components/Portfolio';
-import Capabilities from '@/components/Capabilities';
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Chatbot from '@/components/Chatbot';
+import CinematicHero from '@/components/cinematic/CinematicHero';
+import Statement from '@/components/cinematic/Statement';
+import TechnologyUniverse from '@/components/cinematic/TechnologyUniverse';
+import ServiceExperience from '@/components/cinematic/ServiceExperience';
+import CodeToProduct from '@/components/cinematic/CodeToProduct';
+import ProjectShowcase from '@/components/cinematic/ProjectShowcase';
+import ProductLaunch from '@/components/cinematic/ProductLaunch';
+import TechConstellation from '@/components/cinematic/TechConstellation';
+import ProcessTimeline from '@/components/cinematic/ProcessTimeline';
+import CompanyStory from '@/components/cinematic/CompanyStory';
+import ContactExperience from '@/components/cinematic/ContactExperience';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
@@ -19,20 +21,23 @@ export const metadata = pageMetadata({
   path: '/',
 });
 
+// The cinematic home page. Every section is real, server-rendered HTML; the 3D and canvas layers are decoration.
 export default function Home() {
   return (
     <>
       <Header />
-      <main>
-        <Hero />
-        <ProofStrip />
-        <About />
-        <Services />
-        <Capabilities />
-        <ErpTeaser />
-        <BrandKidodom />
-        <Portfolio />
-        <Contact />
+      <main id="main">
+        <CinematicHero />
+        <Statement />
+        <TechnologyUniverse />
+        <ServiceExperience />
+        <CodeToProduct />
+        <ProjectShowcase />
+        <ProductLaunch />
+        <TechConstellation />
+        <ProcessTimeline />
+        <CompanyStory />
+        <ContactExperience />
       </main>
       <Footer />
       <Chatbot />

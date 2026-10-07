@@ -11,7 +11,7 @@ const data = {
       name: SITE.name,
       alternateName: 'CodeLaksh Software Development',
       description:
-        'CodeLaksh is a software development company in Aurangabad (Chhatrapati Sambhajinagar), Maharashtra, India, building custom software, web and mobile apps, AI, machine learning, ERP, cloud and digital marketing solutions.',
+        'CodeLaksh is a software development company in Chhatrapati Sambhajinagar (Aurangabad), Maharashtra, India, building custom software, web and mobile apps, AI, machine learning, ERP, cloud and digital marketing solutions.',
       url: `${SITE.url}/`,
       logo: { '@type': 'ImageObject', url: `${SITE.url}/logo.png`, width: 534, height: 467 },
       image: `${SITE.url}/og-image.png`,

@@ -10,7 +10,7 @@ export default function NotFound() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main">
         <section className="pg-hero">
           <div className="container pg-notfound">
             <h1 className="pg-title">Page not found</h1>

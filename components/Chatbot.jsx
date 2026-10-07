@@ -17,7 +17,7 @@ function getBotResponse(message) {
   if (lower.includes('app') || lower.includes('mobile'))
     return "We create native and cross-platform mobile apps for iOS and Android. Let's discuss your app idea!";
   if (lower.includes('contact') || lower.includes('call'))
-    return '📞 +91-9834684866 | 📧 codelaksh@gmail.com | 📍 Sangram Nagar, Aurangabad';
+    return '📞 +91-9834684866 | 📧 codelaksh@gmail.com | 📍 Sangram Nagar, Chhatrapati Sambhajinagar (Aurangabad)';
   if (lower.includes('thank')) return "You're welcome! 😊 Feel free to reach out for more questions.";
   return 'Thanks for your message! Our team will get back to you soon. For urgent queries, call +91-9834684866.';
 }

@@ -7,15 +7,15 @@ import { SITE, absoluteUrl, breadcrumbSchema, pageMetadata } from '@/lib/seo';
 import { services } from '@/lib/services';
 
 export const metadata = pageMetadata({
-  title: 'Software Development Company in Aurangabad | CodeLaksh',
+  title: 'Software Development Company in Chhatrapati Sambhajinagar | CodeLaksh',
   description:
-    'CodeLaksh is a software development company in Aurangabad (Chhatrapati Sambhajinagar) building web and mobile apps, ERP, AI and cloud software for businesses.',
+    'CodeLaksh is a software development company in Chhatrapati Sambhajinagar (Aurangabad) building web and mobile apps, ERP, AI and cloud software for businesses.',
   path: '/locations/aurangabad',
 });
 
 const crumbs = [
   { name: 'Home', href: '/' },
-  { name: 'Aurangabad', href: '/locations/aurangabad' },
+  { name: 'Chhatrapati Sambhajinagar', href: '/locations/aurangabad' },
 ];
 
 export default function AurangabadPage() {
@@ -25,7 +25,7 @@ export default function AurangabadPage() {
       '@type': 'WebPage',
       '@id': `${absoluteUrl('/locations/aurangabad')}#page`,
       url: absoluteUrl('/locations/aurangabad'),
-      name: 'Software development company in Aurangabad',
+      name: 'Software development company in Chhatrapati Sambhajinagar (Aurangabad)',
       about: { '@id': `${SITE.url}/#organization` },
       isPartOf: { '@id': `${SITE.url}/#website` },
     },
@@ -35,21 +35,21 @@ export default function AurangabadPage() {
     <>
       <JsonLd nodes={schema} />
       <Header />
-      <main>
+      <main id="main">
         <PageHero
           crumbs={crumbs}
           label="Our Location"
-          h1="Software Development Company in Aurangabad (Chhatrapati Sambhajinagar)"
-          lead="CodeLaksh is based in Sangram Nagar, Aurangabad, Maharashtra. We build software for local businesses and work with clients across India."
+          h1="Software Development Company in Chhatrapati Sambhajinagar (Aurangabad)"
+          lead="CodeLaksh is based in Sangram Nagar, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra. We build software for local businesses and work with clients across India."
         />
 
         <section className="erp-section">
           <div className="container pg-prose">
-            <h2 className="pg-h2">A software company in Aurangabad</h2>
+            <h2 className="pg-h2">A software company in Chhatrapati Sambhajinagar (Aurangabad)</h2>
             <p>
-              Aurangabad, officially renamed Chhatrapati Sambhajinagar, is where CodeLaksh is based and where our team
+              Chhatrapati Sambhajinagar, the city formerly and still widely known as Aurangabad, is where CodeLaksh is based and where our team
               works. Businesses searching for a software development company, an IT company or a web or app developer
-              in Aurangabad can meet us in person at our Sangram Nagar office, or work with us remotely like most of our
+              in Chhatrapati Sambhajinagar (Aurangabad) can meet us in person at our Sangram Nagar office, or work with us remotely like most of our
               clients across India.
             </p>
             <p>
@@ -57,7 +57,7 @@ export default function AurangabadPage() {
               same problem: their billing, stock, orders and customer records live in spreadsheets, paper registers and
               chat messages. We replace that with software built around how the business actually runs.
             </p>
-            <h2 className="pg-h2">What we build for Aurangabad businesses</h2>
+            <h2 className="pg-h2">What we build for Chhatrapati Sambhajinagar (Aurangabad) businesses</h2>
             <ul className="pg-list">
               {services.map((service) => (
                 <li key={service.slug}>

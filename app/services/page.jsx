@@ -43,12 +43,12 @@ export default function ServicesPage() {
     <>
       <JsonLd nodes={schema} />
       <Header />
-      <main>
+      <main id="main">
         <PageHero
           crumbs={crumbs}
           label="Our Services"
           h1="Software Development Services"
-          lead="CodeLaksh is a software development company in Aurangabad, Maharashtra. We design, build and support software for businesses across India, from custom applications and ERP to AI, mobile apps and cloud."
+          lead="CodeLaksh is a software development company in Chhatrapati Sambhajinagar (Aurangabad), Maharashtra. We design, build and support software for businesses across India, from custom applications and ERP to AI, mobile apps and cloud."
         />
         <section className="erp-section">
           <div className="container">
@@ -80,7 +80,7 @@ export default function ServicesPage() {
               Not sure which service you need? Describe the problem on our <a href="/contact">contact page</a> and we
               will recommend a starting point. You can also read about <a href="/about">CodeLaksh</a>, see{' '}
               <a href="/portfolio">our work</a>, or learn about{' '}
-              <a href="/locations/aurangabad">software development in Aurangabad</a>.
+              <a href="/locations/aurangabad">software development in Chhatrapati Sambhajinagar (Aurangabad)</a>.
             </p>
           </div>
         </section>
