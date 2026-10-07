@@ -9,9 +9,7 @@ import { SITE, absoluteUrl, breadcrumbSchema, pageMetadata } from '@/lib/seo';
 import { projects, getProject } from '@/lib/projects';
 import { getService } from '@/lib/services';
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
 

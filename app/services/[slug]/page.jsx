@@ -3,8 +3,6 @@ import ServicePage from '@/components/ServicePage';
 import { pageMetadata } from '@/lib/seo';
 import { services, getService } from '@/lib/services';
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
 }
