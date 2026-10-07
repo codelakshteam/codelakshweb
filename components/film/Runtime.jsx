@@ -3,6 +3,7 @@
 import Lenis from 'lenis';
 import { useEffect, useRef } from 'react';
 import { film } from '@/lib/film';
+import { initMusic, startMusic } from '@/lib/music';
 import { initSound, play, unlock } from '@/lib/sound';
 
 // Behaviour layered over the HTML: smooth scroll with velocity, the precision reticle cursor, the shutter page
@@ -10,7 +11,9 @@ import { initSound, play, unlock } from '@/lib/sound';
 // reduced motion or no JavaScript the page is plain, fully visible HTML.
 export default function Runtime() {
   const shutter = useRef(null);
-  const ret = useRef(null);
+  const cur = useRef(null);
+  const dot = useRef(null);
+  const ring = useRef(null);
   const label = useRef(null);
 
   useEffect(() => {
@@ -22,7 +25,11 @@ export default function Runtime() {
 
     // ---- interface sound (see lib/sound.js): unlocked by the first gesture ----
     initSound();
-    const gesture = () => unlock();
+    initMusic();
+    const gesture = () => {
+      unlock();
+      startMusic();
+    };
     const INTERACTIVE = 'a[href], button, summary, [role="tab"], label[for]';
     const onSoundClick = (e) => {
       const t = e.target.closest && e.target.closest(INTERACTIVE);
@@ -97,51 +104,77 @@ export default function Runtime() {
       window.removeEventListener('pageshow', onShow);
     });
 
-    // ---- pointer: scene camera + light, and the precision reticle ----
+    // ---- pointer: scene camera + light, and the custom cursor (dot + circle, reticle on links) ----
     if (fine && !reduced) {
       let tx = -100;
       let ty = -100;
-      let x = -100;
-      let y = -100;
-      let r = 0;
+      let dx = -100;
+      let dy = -100;
+      let rx = -100;
+      let ry = -100;
+      let raf = 0;
       let lastT = null;
       const loop = () => {
-        x += (tx - x) * 0.45;
-        y += (ty - y) * 0.45;
-        if (ret.current) ret.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-        r = Math.abs(tx - x) + Math.abs(ty - y) > 0.2 ? requestAnimationFrame(loop) : 0;
+        dx += (tx - dx) * 0.7;
+        dy += (ty - dy) * 0.7;
+        rx += (tx - rx) * 0.2;
+        ry += (ty - ry) * 0.2;
+        if (dot.current) dot.current.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
+        if (ring.current) ring.current.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
+        raf = Math.abs(tx - rx) + Math.abs(ty - ry) > 0.2 ? requestAnimationFrame(loop) : 0;
       };
       const onMove = (e) => {
+        if (tx === -100) {
+          dx = rx = e.clientX;
+          dy = ry = e.clientY;
+        }
         tx = e.clientX;
         ty = e.clientY;
         film.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
         film.mouse.y = (e.clientY / window.innerHeight) * 2 - 1;
         root.style.setProperty('--mx', `${e.clientX}px`);
         root.style.setProperty('--my', `${e.clientY}px`);
-        if (!r) r = requestAnimationFrame(loop);
+        if (!raf) raf = requestAnimationFrame(loop);
+        if (cur.current && !cur.current.classList.contains('is-on')) {
+          cur.current.classList.add('is-on');
+          root.classList.add('has-cur');
+        }
         const t = e.target;
-        if (t === lastT || !ret.current) return;
+        if (t === lastT || !cur.current) return;
         lastT = t;
-        const tag = t.closest('[data-cursor]');
+        const tagged = t.closest('[data-cursor]');
         const input = t.closest('input, textarea, select');
-        const link = t.closest('a, button, summary, [role="tab"], [role="button"]');
-        const mode = input ? 'off' : tag ? 'tag' : link ? (link.matches('.fm-btn, [data-cta]') ? 'cta' : 'link') : 'off';
-        ret.current.dataset.mode = mode;
-        root.classList.toggle('has-ret', mode !== 'off');
-        if (label.current) label.current.textContent = mode === 'tag' ? tag.getAttribute('data-cursor') : mode === 'cta' ? '↗' : '';
+        const link = t.closest('a, button, summary, [role="tab"], [role="button"], label[for]');
+        const mode = input ? 'text' : tagged ? 'tag' : link ? (link.matches('.fm-btn, [data-cta], .fm-nav-cta, .fm-chat-launch') ? 'cta' : 'link') : 'dot';
+        cur.current.dataset.mode = mode;
+        if (label.current) label.current.textContent = mode === 'tag' ? tagged.getAttribute('data-cursor') : mode === 'cta' ? '\u2197' : '';
       };
+      const onDown = () => cur.current && cur.current.classList.add('is-down');
+      const onUp = () => cur.current && cur.current.classList.remove('is-down');
       const onLeave = () => {
-        if (ret.current) ret.current.dataset.mode = 'off';
-        root.classList.remove('has-ret');
+        if (cur.current) cur.current.classList.remove('is-on');
+        root.classList.remove('has-cur');
         lastT = null;
       };
+      const onEnter = () => {
+        if (cur.current && tx !== -100) {
+          cur.current.classList.add('is-on');
+          root.classList.add('has-cur');
+        }
+      };
       window.addEventListener('mousemove', onMove, { passive: true });
+      window.addEventListener('mousedown', onDown, { passive: true });
+      window.addEventListener('mouseup', onUp, { passive: true });
       document.addEventListener('mouseleave', onLeave);
+      document.addEventListener('mouseenter', onEnter);
       off.push(() => {
         window.removeEventListener('mousemove', onMove);
+        window.removeEventListener('mousedown', onDown);
+        window.removeEventListener('mouseup', onUp);
         document.removeEventListener('mouseleave', onLeave);
-        cancelAnimationFrame(r);
-        root.classList.remove('has-ret');
+        document.removeEventListener('mouseenter', onEnter);
+        cancelAnimationFrame(raf);
+        root.classList.remove('has-cur');
       });
     }
     return () => off.forEach((fn) => fn());
@@ -153,12 +186,14 @@ export default function Runtime() {
         <i></i>
         <i></i>
       </div>
-      <div className="fm-ret" ref={ret} data-mode="off" aria-hidden="true">
-        <svg width="34" height="34" viewBox="-17 -17 34 34" fill="none" stroke="currentColor" strokeWidth="1">
-          <path d="M-14 0H-5M5 0H14M0 -14V-5M0 5V14" />
-          <path className="fm-ret-box" d="M-9 -9H9V9H-9Z" />
-        </svg>
-        <span ref={label}></span>
+      <div className="fm-cur" ref={cur} data-mode="dot" aria-hidden="true">
+        <i className="fm-cur-dot" ref={dot}></i>
+        <span className="fm-cur-ring" ref={ring}>
+          <svg width="52" height="52" viewBox="-26 -26 52 52" fill="none" stroke="currentColor" strokeWidth="1">
+            <path d="M-26 0H-17M17 0H26M0 -26V-17M0 17V26" />
+          </svg>
+          <b className="fm-cur-label" ref={label}></b>
+        </span>
       </div>
     </>
   );
