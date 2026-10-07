@@ -3,7 +3,7 @@
 import Lenis from 'lenis';
 import { useEffect, useRef } from 'react';
 import { film } from '@/lib/film';
-import { initMusic, startMusic } from '@/lib/music';
+import { MUSIC_DELAY_MS, initMusic, startMusic } from '@/lib/music';
 import { initSound, play, unlock } from '@/lib/sound';
 
 // Behaviour layered over the HTML: smooth scroll with velocity, the precision reticle cursor, the shutter page
@@ -26,10 +26,26 @@ export default function Runtime() {
     // ---- interface sound (see lib/sound.js): unlocked by the first gesture ----
     initSound();
     initMusic();
+    // Music begins MUSIC_DELAY_MS after the visitor's session started (kept across pages), and only once a gesture has
+    // unlocked audio. Interface sounds are unlocked immediately.
+    let t0 = Date.now();
+    try {
+      t0 = Number(window.sessionStorage.getItem('cl-t0')) || t0;
+      window.sessionStorage.setItem('cl-t0', String(t0));
+    } catch {
+      /* ignore */
+    }
+    let gestured = false;
+    const tryMusic = () => {
+      if (gestured && Date.now() - t0 >= MUSIC_DELAY_MS) startMusic();
+    };
     const gesture = () => {
       unlock();
-      startMusic();
+      gestured = true;
+      tryMusic();
     };
+    const musicTimer = window.setTimeout(tryMusic, Math.max(0, MUSIC_DELAY_MS - (Date.now() - t0)) + 50);
+    off.push(() => window.clearTimeout(musicTimer));
     const INTERACTIVE = 'a[href], button, summary, [role="tab"], label[for]';
     const onSoundClick = (e) => {
       const t = e.target.closest && e.target.closest(INTERACTIVE);
