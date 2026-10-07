@@ -67,7 +67,7 @@ export default function AurangabadPage() {
               ))}
             </ul>
             <p>
-              CodeLaksh also has a second branch in Pune, Maharashtra, so teams there can work with us in person as well.
+              CodeLaksh also has a second branch in Hadapsar, Pune, Maharashtra, on the same phone number, so teams there can work with us in person as well.
             </p>
             <h2 className="pg-h2">Visit or contact CodeLaksh</h2>
             <address className="pg-address">

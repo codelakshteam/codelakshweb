@@ -77,7 +77,7 @@ export default function ContactExperience({ id = 'contact', heading = 'h2' }) {
               <li>
                 Sangram Nagar, {SITE.city} ({SITE.cityAlt}), {SITE.region}
               </li>
-              <li>Second branch: Pune, Maharashtra</li>
+              <li>Second branch: Hadapsar, Pune, Maharashtra (same phone)</li>
               <li>Mon to Sat, 10:00 to 19:00 IST</li>
             </ul>
           </div>

@@ -60,7 +60,7 @@ export default function AboutPage() {
               CodeLaksh is a software development company based in Sangram Nagar, {SITE.city} ({SITE.cityAlt}),{' '}
               {SITE.region}, India. We have been building software since {SITE.foundingYear}. Our team of developers,
               designers and project managers has worked on projects across several industries, and we work with businesses
-              from {SITE.city}, our second branch in Pune, and across India.
+              from {SITE.city}, our second branch in Hadapsar, Pune, and across India.
             </p>
             <p>
               We are also a product company. CodeLaksh ERP, our billing, inventory and accounting software, is live on

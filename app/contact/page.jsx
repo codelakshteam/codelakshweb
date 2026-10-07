@@ -58,7 +58,7 @@ export default function ContactPage() {
                 <br />
                 Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
                 <br />
-                Second branch: Pune, Maharashtra
+                Second branch: Hadapsar, Pune, Maharashtra (same phone number)
               </address>
               <p>
                 <strong>Business hours:</strong> Monday to Saturday, 10:00 AM to 7:00 PM (IST). We work with clients in{' '}
