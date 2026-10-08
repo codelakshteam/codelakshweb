@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Chatbot from '@/components/Chatbot';
 import JsonLd from '@/components/JsonLd';
+import WebView from '@/components/WebView';
 import PageHero from '@/components/PageHero';
 import { SITE, absoluteUrl, breadcrumbSchema, pageMetadata } from '@/lib/seo';
 import { projects, getProject } from '@/lib/projects';
@@ -63,6 +64,18 @@ export default function ProjectPage({ params }) {
       <Header />
       <main id="main">
         <PageHero crumbs={crumbs} label={project.category} h1={project.h1} lead={project.summary} />
+
+        {project.slug === 'kidodom' && (
+          <section className="erp-section">
+            <div className="container">
+              <div className="section-header">
+                <h2 className="section-title">Kidodom on the web</h2>
+                <p className="erp-sub">The same Kidodom experience in a browser, at kidodom.in.</p>
+              </div>
+              <WebView url="https://kidodom.in" title="Kidodom web app" />
+            </div>
+          </section>
+        )}
 
         <section className="erp-section">
           <div className="container pg-two">

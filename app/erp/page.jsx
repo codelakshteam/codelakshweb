@@ -5,7 +5,7 @@ import Chatbot from '@/components/Chatbot';
 import ErpSubnav from '@/components/ErpSubnav';
 import ErpPricing from '@/components/ErpPricing';
 import { pageMetadata } from '@/lib/seo';
-import { PLAY_STORE_URL, erpHighlights, advancedFeatures, industryModules, mobileShots, desktopShots, addOns, erpFaqs } from '@/components/erpData';
+import { PLAY_STORE_URL, APP_STORE_URL, erpHighlights, advancedFeatures, industryModules, mobileShots, desktopShots, addOns, erpFaqs } from '@/components/erpData';
 
 export const metadata = {
   ...pageMetadata({
@@ -47,10 +47,10 @@ const jsonLd = {
       name: 'CodeLaksh ERP',
       url: 'https://codelaksh.in/erp',
       applicationCategory: 'BusinessApplication',
-      operatingSystem: 'Android, Windows',
+      operatingSystem: 'Android, iOS, Windows',
       description:
         'GST billing, inventory, accounting, purchases and payments software for Indian shops, restaurants and hotels. Works offline on desktop with cloud sync and a mobile app.',
-      downloadUrl: 'https://play.google.com/store/apps/details?id=com.codelaksh.erp',
+      downloadUrl: ['https://play.google.com/store/apps/details?id=com.codelaksh.erp', 'https://apps.apple.com/in/app/codelaksh-erp/id6815138964'],
       publisher: { '@id': 'https://codelaksh.in/#organization' },
       offers: [
         { '@type': 'Offer', name: 'Starter (yearly)', price: '3499', priceCurrency: 'INR' },
@@ -74,13 +74,22 @@ const jsonLd = {
 
 function PlayStoreButton({ className = '' }) {
   return (
-    <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className={`btn btn-play ${className}`}>
-      <i className="fab fa-google-play" aria-hidden="true"></i>
-      <span>
-        <small>GET IT ON</small>
-        Google Play
-      </span>
-    </a>
+    <>
+      <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className={`btn btn-play ${className}`}>
+        <i className="fab fa-apple" aria-hidden="true"></i>
+        <span>
+          <small>DOWNLOAD ON THE</small>
+          App Store
+        </span>
+      </a>
+      <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className={`btn btn-play ${className}`}>
+        <i className="fab fa-google-play" aria-hidden="true"></i>
+        <span>
+          <small>GET IT ON</small>
+          Google Play
+        </span>
+      </a>
+    </>
   );
 }
 
@@ -109,7 +118,7 @@ export default function ErpPage() {
                 </a>
               </div>
               <p className="erp-note">
-                <i className="fas fa-circle-check" aria-hidden="true"></i> Live on Google Play &nbsp;·&nbsp;
+                <i className="fas fa-circle-check" aria-hidden="true"></i> Live on App Store and Google Play &nbsp;·&nbsp;
                 <i className="fas fa-circle-check" aria-hidden="true"></i> Windows desktop app &nbsp;·&nbsp;
                 <i className="fas fa-circle-check" aria-hidden="true"></i> 7-day free trial on Growth
               </p>
@@ -198,7 +207,7 @@ export default function ErpPage() {
               <h2 className="section-title">
                 Your business, <span className="highlight">in your pocket</span>
               </h2>
-              <p className="erp-sub">Available on Android. Bill, track invoices and check reports from anywhere.</p>
+              <p className="erp-sub">Available on iPhone and Android. Bill, track invoices and check reports from anywhere.</p>
             </div>
             <div className="erp-phone-strip">
               {mobileShots.map((shot) => (

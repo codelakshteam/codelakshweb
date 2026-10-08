@@ -3,6 +3,8 @@
 
 export const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.codelaksh.erp';
 
+export const APP_STORE_URL = 'https://apps.apple.com/in/app/codelaksh-erp/id6815138964';
+
 export const PLAY_STORE_URL_KIDODOM = 'https://play.google.com/store/apps/details?id=com.kidodom.web&hl=en';
 export const APP_STORE_URL_KIDODOM = 'https://apps.apple.com/ng/app/kidodom/id6804982156';
 export const KIDODOM_SITE_URL = 'https://kidodom.in';

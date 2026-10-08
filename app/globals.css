@@ -487,3 +487,12 @@ img { max-width: 100%; }
   .pg-two, .pg-links, .pg-benefits, .portfolio-grid.is-two { grid-template-columns: 1fr; gap: 28px; }
   .pg-links, .pg-benefits { gap: 16px; }
 }
+
+/* live web view in a phone frame */
+.wv { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.wv-phone { width: min(100%, 390px); height: min(78vh, 720px); border-radius: 34px; border: 8px solid #0c1b2a; background: #fff; overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }
+.wv-bar { flex: none; display: flex; justify-content: center; padding: 8px 12px; background: #eef2f4; font: 500 0.72rem var(--font-mono, monospace); color: #475569; }
+.wv-bar em { font-style: normal; }
+.wv-phone iframe { flex: 1; width: 100%; border: 0; }
+.wv-start { flex: 1; display: grid; place-content: center; justify-items: center; gap: 14px; border: 0; cursor: pointer; background: linear-gradient(160deg, #08406e, #0a7d8c 60%, #3cb878); color: #fff; font: 600 1rem inherit; }
+.wv-start i { width: 56px; height: 56px; border-radius: 50%; background: rgba(255, 255, 255, 0.18); display: grid; place-items: center; }
