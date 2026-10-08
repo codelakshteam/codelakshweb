@@ -18,8 +18,13 @@ export default function Stage2D({ n = 700, still = false }) {
     const size = new Float32Array(n);
     let W = 1;
     let H = 1;
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    // Phones: DPR 1, ~30 fps, no idle drift, and nothing is redrawn unless the film time actually moved.
+    const mob = document.documentElement.classList.contains('mob');
+    const dpr = mob ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
+    let dirty = true;
+    let lastDraw = 0;
     const resize = () => {
+      dirty = true;
       W = window.innerWidth;
       H = window.innerHeight;
       cv.width = W * dpr;
@@ -38,12 +43,20 @@ export default function Stage2D({ n = 700, still = false }) {
       last = now;
       const on = film.acts.size > 0 && !document.hidden;
       cv.style.opacity = on ? '1' : '0';
+      if (on && mob) {
+        if (now - lastDraw < 32 || (!dirty && Math.abs(filmT() - tS) < 0.0006)) {
+          if (!still) raf = requestAnimationFrame(draw);
+          return;
+        }
+        lastDraw = now;
+        dirty = false;
+      }
       if (on) {
         time += dt;
         tS += (filmT() - tS) * Math.min(1, dt * 5);
-        const rotY = still ? 0.3 : Math.sin(time * 0.2) * 0.35 + tS * 0.5;
+        const rotY = still ? 0.3 : mob ? 0.3 + tS * 0.5 : Math.sin(time * 0.2) * 0.35 + tS * 0.5;
         const s = solve(tS, rotY, 0, pos, size, true);
-        const cam = cameraFor(layouts, tS, still ? 0 : time, mouse);
+        const cam = cameraFor(layouts, tS, still || mob ? 0 : time, mouse);
         // view basis
         const f = [cam.l[0] - cam.p[0], cam.l[1] - cam.p[1], cam.l[2] - cam.p[2]];
         const fl = Math.hypot(...f);
@@ -57,11 +70,15 @@ export default function Stage2D({ n = 700, still = false }) {
         const fit = asp < 1 ? Math.max(0.4, asp) : 1;
         const ox = asp > 1.35 ? 1.9 : 0;
         const oy = asp < 1 ? 2.4 : 0;
+        // phones: during the hero the logo is smaller and higher, clear of the headline; it grows into the systems scenes
+        const hs = mob ? Math.min(1, tS / 0.55) : 1;
+        const fitH = fit * (mob ? 0.62 + 0.38 * hs : 1);
+        const oyH = oy + (mob ? (1 - hs) * -0.2 : 0);
         const proj = new Float32Array(n * 3);
         for (let i = 0; i < n; i += 1) {
-          const x = pos[i * 3] * fit + ox - cam.p[0];
-          const y = pos[i * 3 + 1] * fit + oy - cam.p[1];
-          const z = pos[i * 3 + 2] * fit - cam.p[2];
+          const x = pos[i * 3] * fitH + ox - cam.p[0];
+          const y = pos[i * 3 + 1] * fitH + oyH - cam.p[1];
+          const z = pos[i * 3 + 2] * fitH - cam.p[2];
           const dz = x * f[0] + y * f[1] + z * f[2];
           proj[i * 3] = W / 2 + ((x * r[0] + y * r[1] + z * r[2]) * focal) / dz;
           proj[i * 3 + 1] = H / 2 - ((x * u[0] + y * u[1] + z * u[2]) * focal) / dz;

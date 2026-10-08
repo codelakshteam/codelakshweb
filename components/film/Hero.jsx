@@ -29,7 +29,7 @@ export default function Hero() {
               <span className="fm-hl"><span>what&rsquo;s next.</span></span>
             </span>
           </h1>
-          <p className="fm-hero-sub">Code Your Vision With Innovation. Software, AI, mobile, ERP and cloud, engineered in Chhatrapati Sambhajinagar and Pune (Hadapsar) for businesses across India.</p>
+          <p className="fm-hero-sub"><strong>Code Your Vision With Innovation.</strong> <span className="fm-sub-more">Software, AI, mobile, ERP and cloud, engineered in Chhatrapati Sambhajinagar and Pune (Hadapsar) for businesses across India.</span></p>
           <div className="fm-actions">
             <a href="/contact" className="fm-btn fm-btn-solid">Start a project <i aria-hidden="true">&rarr;</i></a>
             <a href="/portfolio" className="fm-btn">Explore our work <i aria-hidden="true">&rarr;</i></a>

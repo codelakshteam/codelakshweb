@@ -57,7 +57,8 @@ export default function Runtime() {
     // ---- smooth scroll + velocity ----
     let lenis = null;
     let raf = 0;
-    if (!reduced) {
+    const mob = root.classList.contains('mob');
+    if (!reduced && !mob) {
       lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 0.95, smoothWheel: true });
       window.__lenis = lenis;
       const tick = (t) => {

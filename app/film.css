@@ -563,3 +563,66 @@ a:focus-visible, button:focus-visible { outline-color: var(--ac); }
 @media (prefers-reduced-motion: reduce) { .fm-chat-ring { animation: none; opacity: 0; } .fm-chat-panel { transition: none; } }
 .fm-chat-form input:focus-visible { outline: none; }
 .fm-chat-form:focus-within { box-shadow: 0 -2px 0 #0a7d8c inset; }
+
+/* ---------- phones and touch devices only (html.mob): cheaper paint, no blend/blur, simpler sweeps ---------- */
+html.mob .fm-nav { mix-blend-mode: normal; background: #071a2b; color: #e9f3f3; padding: 10px 8px 10px 16px; transition: transform 0.45s var(--snap), background 0.3s; }
+html.mob .fm-nav.is-top { background: transparent; }
+html.mob .fm-nav .fm-burger span { background: #e9f3f3; }
+html.mob .fm-stage::after { display: none; }
+html.mob .fm-hero { perspective: none; }
+html.mob .fm-hero-copy { filter: none; transform: translate3d(0, calc(var(--p) * -30px), 0); }
+html.mob .fm-edge { display: none; }
+html.mob .fm-new, html.mob .fm-old { clip-path: none; will-change: opacity; }
+html.mob .fm-new { opacity: clamp(0, calc((var(--p) - 0.38) * 9), 1); }
+html.mob .fm-old { opacity: clamp(0, calc(1 - (var(--p) - 0.38) * 9), 1); }
+html.mob .fm-sweep-pin::after { content: ''; position: absolute; inset: 0; background: #fff; pointer-events: none; opacity: calc(min(var(--p), 1 - var(--p)) * 1.1); }
+html.mob .fm-sound.is-on .fm-sound-bars i, html.mob .fm-dot, html.mob .fm-scrollcue i { animation: none; }
+html.mob .fm-sound.is-on .fm-sound-bars i { height: 8px; }
+html.mob .fm-chat-ring { animation: none; opacity: 0; }
+html.mob .fm-device, html.mob .fm-shot-phones img { transition: none; }
+html.mob .fm-sys-title span, html.mob .fm-sys-list > li { will-change: transform; }
+html.mob .fm-sys-text, html.mob .fm-keys { transition-duration: 0.35s; }
+
+/* short / narrow phones: keep every pinned scene inside the screen */
+@media (max-width: 720px) and (max-height: 720px) {
+  .fm-hero .fm-pin { padding: 70px 18px 16px; }
+  .fm-hero-top { display: none; }
+  .fm-kicker { margin-bottom: 8px; font-size: 0.66rem; }
+  .fm-hero-mega { font-size: clamp(2.3rem, 11.4vw, 3.5rem); }
+  .fm-hero-sub { margin: 12px 0; font-size: 0.88rem; line-height: 1.5; }
+  .fm-hero .fm-actions { gap: 8px; }
+  .fm-hero .fm-btn { padding: 13px 18px; }
+  .fm-hero-foot .fm-meta:nth-child(2), .fm-scrollcue { display: none; }
+  .fm-sys-title { font-size: clamp(3.2rem, 18vw, 5rem); }
+  .fm-sys-text { font-size: 0.92rem; line-height: 1.5; margin-bottom: 12px; }
+  .fm-keys { margin-bottom: 14px; }
+  .fm-sweep-copy .fm-meta { top: 72px; }
+}
+@media (max-width: 400px) {
+  .fm-rail { gap: 8px; justify-content: space-between; }
+  .fm-rail button { font-size: 0.7rem; letter-spacing: 0.04em; }
+}
+
+/* footer wordmark: sized from its own container so the last letter can never be cropped */
+.fm-wordmark-box { container-type: inline-size; width: 100%; overflow: visible; }
+.fm-wordmark { white-space: nowrap; padding: 0 0.02em; }
+@supports (font-size: 1cqw) { .fm-wordmark { font-size: calc(100cqw / 6.7); line-height: 0.85; } }
+
+/* ---------- phone hero flow: logo above, text below on a scrim, nothing overlapping ---------- */
+@media (max-width: 720px) {
+  html.mob .fm-hero .fm-pin { grid-template-rows: auto 1fr auto; }
+  html.mob .fm-hero-copy { grid-row: 2; align-self: end; margin: 0 -18px; padding: 56px 18px 6px; background: linear-gradient(180deg, rgba(5, 22, 37, 0) 0%, rgba(5, 22, 37, 0.82) 30%, rgba(5, 22, 37, 0.92) 100%); }
+  html.mob .fm-hero-sub { text-shadow: 0 1px 12px rgba(4, 16, 28, 0.9); }
+  html.mob .fm-hero-sub strong { color: var(--fg); font-weight: 600; }
+  html.mob .fm-kicker { color: rgba(233, 243, 243, 0.8); }
+  html.mob .fm-hero-foot { display: none; }
+  html.mob .fm-hero-top { opacity: 1; grid-row: 1; }
+  html.mob .fm-hero-top .fm-label { font-size: 0.62rem; letter-spacing: 0.16em; }
+  html.mob .fm-nav .fm-audio .fm-sound:nth-child(2) { display: none; }
+  html.mob .fm-sheet .fm-audio .fm-sound:nth-child(2) { display: inline-flex; }
+  html.mob .fm-work { background: #071a2b; }
+}
+@media (max-width: 720px) and (max-height: 720px) {
+  html.mob .fm-sub-more { display: none; }
+  html.mob .fm-hero-sub { margin: 10px 0 14px; }
+}

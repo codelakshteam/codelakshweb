@@ -29,6 +29,49 @@ export function useCapability() {
   return cap;
 }
 
+// Phones: one shared scroll listener and cached element geometry, so scrolling does no layout reads and only writes a
+// custom property when its value actually changed. (Desktop keeps the per-element version below, unchanged.)
+const mobileItems = new Set();
+let mobileBound = false;
+let mobileRaf = 0;
+function measureMobile() {
+  mobileItems.forEach((it) => {
+    const r = it.el.getBoundingClientRect();
+    it.top = r.top + window.scrollY;
+    it.h = r.height;
+  });
+}
+function runMobile() {
+  mobileRaf = 0;
+  const y = window.scrollY;
+  const vh = window.innerHeight;
+  mobileItems.forEach((it) => {
+    const top = it.top - y;
+    const p0 = it.mode === 'pin' ? (it.h - vh > 0 ? -top / (it.h - vh) : 0) : (vh - top) / (vh + it.h);
+    const p = Math.min(1, Math.max(0, p0));
+    if (p === it.last || (Math.abs(p - it.last) < 0.002 && p !== 0 && p !== 1)) return;
+    it.last = p;
+    it.el.style.setProperty('--p', p.toFixed(3));
+    if (it.cb.current) it.cb.current(p);
+  });
+}
+function bindMobile() {
+  if (mobileBound) return;
+  mobileBound = true;
+  const req = () => {
+    if (!mobileRaf) mobileRaf = requestAnimationFrame(runMobile);
+  };
+  const remeasure = () => {
+    measureMobile();
+    req();
+  };
+  window.addEventListener('scroll', req, { passive: true });
+  window.addEventListener('resize', remeasure);
+  window.addEventListener('load', remeasure);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
+  if ('ResizeObserver' in window) new ResizeObserver(remeasure).observe(document.body);
+}
+
 // Writes --p (0..1) onto the element as it scrolls, with no React re-render. mode "pin": progress through a tall
 // container whose child is sticky. mode "pass": progress of the element travelling from entering to leaving the screen.
 export function useScrollProgress(ref, { mode = 'pin', onChange } = {}) {
@@ -37,6 +80,14 @@ export function useScrollProgress(ref, { mode = 'pin', onChange } = {}) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return undefined;
+    if (document.documentElement.classList.contains('mob')) {
+      const it = { el, mode, cb, top: 0, h: 0, last: -1 };
+      mobileItems.add(it);
+      bindMobile();
+      measureMobile();
+      runMobile();
+      return () => mobileItems.delete(it);
+    }
     let raf = 0;
     let last = -1;
     const calc = () => {

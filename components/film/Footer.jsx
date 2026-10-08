@@ -37,7 +37,9 @@ export default function Footer() {
             <p className="fm-dim">Mon to Sat, 10:00 to 19:00 IST</p>
           </address>
         </div>
-        <p className="fm-wordmark" aria-hidden="true">CODELAKSH</p>
+        <div className="fm-wordmark-box">
+          <p className="fm-wordmark" aria-hidden="true">CODELAKSH</p>
+        </div>
         <p className="fm-legal">
           <span>CodeLaksh is a software development company in {SITE.city}, {SITE.region}, India.</span>
           <span>&copy; {new Date().getFullYear()} CodeLaksh. All rights reserved.</span>

@@ -12,7 +12,7 @@ export default function Stage() {
   const cap = useCapability();
   return (
     <div className="fm-stage" aria-hidden="true">
-      {cap.ready && (cap.tier3d ? <StageGL n={cap.low ? 1300 : 2000} /> : <Stage2D n={cap.narrow ? 520 : 800} still={cap.reduced} />)}
+      {cap.ready && (cap.tier3d ? <StageGL n={cap.low ? 1300 : 2000} /> : <Stage2D n={cap.narrow || cap.coarse ? 300 : 800} still={cap.reduced} />)}
     </div>
   );
 }
