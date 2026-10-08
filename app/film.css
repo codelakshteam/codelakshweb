@@ -613,7 +613,7 @@ html.mob .fm-sys-text, html.mob .fm-keys { transition-duration: 0.35s; }
   html.mob .fm-hero .fm-pin { grid-template-rows: auto 1fr auto; }
   html.mob .fm-hero-copy { grid-row: 2; align-self: end; margin: 0 -18px; padding: 56px 18px 6px; background: linear-gradient(180deg, rgba(5, 22, 37, 0) 0%, rgba(5, 22, 37, 0.82) 30%, rgba(5, 22, 37, 0.92) 100%); }
   html.mob .fm-hero-sub { text-shadow: 0 1px 12px rgba(4, 16, 28, 0.9); }
-  html.mob .fm-hero-sub strong { color: var(--fg); font-weight: 600; }
+  html.mob .fm-hero-sub { color: rgba(233, 243, 243, 0.86); }
   html.mob .fm-kicker { color: rgba(233, 243, 243, 0.8); }
   html.mob .fm-hero-foot { display: none; }
   html.mob .fm-hero-top { opacity: 1; grid-row: 1; }
