@@ -4,7 +4,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Chatbot from '@/components/Chatbot';
 import JsonLd from '@/components/JsonLd';
-import WebView from '@/components/WebView';
 import PageHero from '@/components/PageHero';
 import { SITE, absoluteUrl, breadcrumbSchema, pageMetadata } from '@/lib/seo';
 import { projects, getProject } from '@/lib/projects';
@@ -65,14 +64,17 @@ export default function ProjectPage({ params }) {
       <main id="main">
         <PageHero crumbs={crumbs} label={project.category} h1={project.h1} lead={project.summary} />
 
-        {project.slug === 'kidodom' && (
+        {project.webShot && (
           <section className="erp-section">
             <div className="container">
               <div className="section-header">
-                <h2 className="section-title">Kidodom on the web</h2>
-                <p className="erp-sub">The same Kidodom experience in a browser, at kidodom.in.</p>
+                <h2 className="section-title">On the web</h2>
+                <p className="erp-sub">The website that goes with the app, live at kidodom.in.</p>
               </div>
-              <WebView url="https://kidodom.in" title="Kidodom web app" />
+              <a href={project.webShot.href} target="_blank" rel="noopener noreferrer" className="pg-web">
+                <div className="pg-web-bar" aria-hidden="true"><span></span><span></span><span></span><em>kidodom.in</em></div>
+                <Image src={project.webShot.src} alt={project.webShot.alt} width={project.webShot.width} height={project.webShot.height} loading="lazy" />
+              </a>
             </div>
           </section>
         )}
@@ -93,13 +95,25 @@ export default function ProjectPage({ params }) {
         <section className="erp-section erp-alt">
           <div className="container">
             <div className="section-header">
-              <h2 className="section-title">Screenshots</h2>
+              <h2 className="section-title">{project.mobileShots ? 'Desktop app' : 'Mobile app screens'}</h2>
             </div>
             <div className="pg-shots">
               {project.shots.map((shot) => (
                 <Image key={shot.src} src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} loading="lazy" />
               ))}
             </div>
+            {project.mobileShots && (
+              <>
+                <div className="section-header" style={{ marginTop: 48 }}>
+                  <h2 className="section-title">Mobile app</h2>
+                </div>
+                <div className="pg-shots">
+                  {project.mobileShots.map((shot) => (
+                    <Image key={shot.src} src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} loading="lazy" style={{ width: 'min(100%, 230px)' }} />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </section>
 

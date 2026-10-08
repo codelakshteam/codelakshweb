@@ -496,3 +496,9 @@ img { max-width: 100%; }
 .wv-phone iframe { flex: 1; width: 100%; border: 0; }
 .wv-start { flex: 1; display: grid; place-content: center; justify-items: center; gap: 14px; border: 0; cursor: pointer; background: linear-gradient(160deg, #08406e, #0a7d8c 60%, #3cb878); color: #fff; font: 600 1rem inherit; }
 .wv-start i { width: 56px; height: 56px; border-radius: 50%; background: rgba(255, 255, 255, 0.18); display: grid; place-items: center; }
+
+.pg-web { display: block; max-width: 980px; margin: 0 auto; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-sm); background: #fff; }
+.pg-web-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #eef2f4; }
+.pg-web-bar span { width: 10px; height: 10px; border-radius: 50%; background: #c5ced4; }
+.pg-web-bar em { margin-left: 10px; font: 500 0.72rem var(--font-mono, monospace); font-style: normal; color: #475569; }
+.pg-web img { display: block; width: 100%; height: auto; }

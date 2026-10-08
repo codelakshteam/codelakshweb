@@ -36,6 +36,7 @@ export default function Work() {
               </div>
               <p className="fm-tabtext" id="wk-panel" role="tabpanel" aria-labelledby={`wk-${view}`}>{cur.text}</p>
               <a href="/portfolio/codelaksh-erp" className="fm-btn fm-btn-solid" data-cursor="EXPLORE &rarr;">Read the case study <i aria-hidden="true">&rarr;</i></a>
+              <p className="fm-stores"><a href="https://apps.apple.com/in/app/codelaksh-erp/id6815138964" target="_blank" rel="noopener noreferrer">App Store <i aria-hidden="true">↗</i></a><a href="https://play.google.com/store/apps/details?id=com.codelaksh.erp" target="_blank" rel="noopener noreferrer">Google Play <i aria-hidden="true">↗</i></a></p>
             </div>
             <div className="fm-shot fm-shot-wide" data-cursor="EXPLORE &rarr;">
               <div className="fm-device">
@@ -56,10 +57,15 @@ export default function Work() {
               <p className="fm-keys-line">Mobile &nbsp;/&nbsp; E-commerce &nbsp;/&nbsp; iOS &nbsp;/&nbsp; Android</p>
               <p className="fm-story">A shopping and guidance app for parents of young children: a vaccination tracker, developmental milestones, contests and deals, on the App Store and Google Play.</p>
               <a href="/portfolio/kidodom" className="fm-btn fm-btn-solid" data-cursor="EXPLORE &rarr;">Read the case study <i aria-hidden="true">&rarr;</i></a>
+              <p className="fm-stores"><a href="https://apps.apple.com/ng/app/kidodom/id6804982156" target="_blank" rel="noopener noreferrer">App Store <i aria-hidden="true">↗</i></a><a href="https://play.google.com/store/apps/details?id=com.kidodom.web&hl=en" target="_blank" rel="noopener noreferrer">Google Play <i aria-hidden="true">↗</i></a><a href="https://kidodom.in" target="_blank" rel="noopener noreferrer">kidodom.in <i aria-hidden="true">↗</i></a></p>
             </div>
-            <div className="fm-shot fm-shot-phones" data-cursor="EXPLORE &rarr;">
-              <Image src="/kidodom-assets/2-discover.webp" alt="Kidodom app home screen with product categories" width={520} height={1125} loading="lazy" sizes="(max-width: 900px) 44vw, 20vw" />
-              <Image src="/kidodom-assets/5-guidance.webp" alt="Kidodom guidance hub with vaccination tracker and milestones" width={520} height={1125} loading="lazy" sizes="(max-width: 900px) 44vw, 20vw" />
+            <div className="fm-shot fm-shot-wide" data-cursor="EXPLORE &rarr;">
+              <div className="fm-device">
+                <div className="fm-device-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div className="fm-device-screen">
+                  <Image src="/kidodom-assets/web-home.webp" alt="Kidodom website home page at kidodom.in" width={1900} height={904} loading="lazy" className="is-on" sizes="(max-width: 900px) 92vw, 52vw" />
+                </div>
+              </div>
             </div>
           </article>
 
