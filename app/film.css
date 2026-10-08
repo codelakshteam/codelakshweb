@@ -626,3 +626,6 @@ html.mob .fm-sys-text, html.mob .fm-keys { transition-duration: 0.35s; }
   html.mob .fm-sub-more { display: none; }
   html.mob .fm-hero-sub { margin: 10px 0 14px; }
 }
+
+/* keep the legal line clear of the floating chat button */
+.fm-legal { padding-right: 84px; padding-bottom: 8px; }
