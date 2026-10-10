@@ -25,7 +25,7 @@ Commands (run from repo root): `npm run ig:test`, `npm run ig:dry-run`, `npm run
 5. **GitHub secrets** (Settings > Secrets and variables > Actions): `IG_USER_ID`, `IG_ACCESS_TOKEN`, optionally `META_APP_ID`, `META_APP_SECRET` (enables expiry/permission checks). Never put these in files, prompts or chat. Locally: `node --env-file=marketing/instagram/.env.local ...` (git-ignored).
 6. **Deploy the site** so `https://codelaksh.in/social/...` serves the images (Instagram fetches media from public HTTPS URLs; the publisher refuses to post if any URL is unreachable).
 7. **Go live:** `npm run ig:approve -- --all` (or edit `status` to `approved`), then set repository **variable** `IG_PUBLISH_ENABLED=true`. Until then everything is a dry run.
-8. Set the Instagram bio link to `https://codelaksh.in/erp?utm_source=instagram&utm_medium=social&utm_campaign=bio`. The site's Instagram icon in `components/Contact.jsx` and the footer still links to `#`; tell me the handle and I will wire it.
+8. Set the Instagram bio link to `https://codelaksh.in/erp?utm_source=instagram&utm_medium=social&utm_campaign=bio`. The account is https://www.instagram.com/codelaksh/ (`@codelaksh`); the icon in `components/Contact.jsx` links to it. The LinkedIn, Twitter and GitHub icons still link to `#`.
 
 ## Safety model
 - Dry run by default. Live needs `--live` **and** `IG_PUBLISH_ENABLED=true` **and** `status: approved` **and** passing validation **and** reachable media URLs.

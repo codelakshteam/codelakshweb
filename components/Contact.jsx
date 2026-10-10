@@ -115,7 +115,7 @@ export default function Contact() {
               <a href="#" aria-label="Twitter">
                 <i className="fab fa-twitter" aria-hidden="true"></i>
               </a>
-              <a href="#" aria-label="Instagram">
+              <a href="https://www.instagram.com/codelaksh/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <i className="fab fa-instagram" aria-hidden="true"></i>
               </a>
               <a href="#" aria-label="GitHub">

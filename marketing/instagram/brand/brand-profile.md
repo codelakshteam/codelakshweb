@@ -3,6 +3,7 @@
 Source of truth: this repository (the website source: `components/*.jsx`, `components/erpData.js`, `app/globals.css`). The live site could not be fetched from the build sandbox, so nothing here was taken from anywhere else. Re-check after site changes.
 
 ## Brand
+- **Instagram:** https://www.instagram.com/codelaksh/ (@codelaksh). Account type (Professional or personal) and Page link are not yet verified.
 - **Name:** CodeLaksh | **Slogan:** Code Your Vision With Innovation | **Site:** https://codelaksh.in
 - **Positioning on the site:** "AI Solutions & Software Development"; "Premier AI Solutions & Software Development Company in India". Team of developers, designers and project managers; "Since 2020"; office: Sangram Nagar, Aurangabad.
 - **Contact (public on site):** +91-9834684866, codelaksh@gmail.com, Mon-Sat 10 AM-7 PM.
