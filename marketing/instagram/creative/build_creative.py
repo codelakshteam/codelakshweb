@@ -23,7 +23,9 @@ def font(name, size):
 def gradient(w, h, c1, c2):
     base = Image.new("RGB", (w, h), c1)
     top = Image.new("RGB", (w, h), c2)
-    mask = Image.linear_gradient("L").resize((w, h)).rotate(45, expand=False)
+    from PIL import ImageChops
+    v = Image.linear_gradient("L").resize((w, h))
+    mask = ImageChops.add(v, v.transpose(Image.TRANSPOSE).transpose(Image.FLIP_TOP_BOTTOM), scale=2)
     return Image.composite(top, base, mask)
 
 
