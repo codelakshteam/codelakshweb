@@ -1,0 +1,43 @@
+{
+  "id": "2026-10-11-2-billing-software-checklist",
+  "status": "draft",
+  "scheduled_at": "2026-10-11T19:30:00+05:30",
+  "format": "carousel",
+  "pillar": "education",
+  "objective": "Save/share-worthy education that builds trust and leads into the ERP page",
+  "audience": "First-time buyers of billing software: small shop owners, restaurant and hotel owners, accountants advising them",
+  "concept": "6-slide buyer's checklist: 4 vendor-neutral questions (GST invoices, offline, data migration, growth) then how CodeLaksh ERP answers them",
+  "hook": "Buying billing software? Ask these 4 questions first.",
+  "caption": "Buying billing software? Ask these 4 questions first.\n\n1. Are the invoices actually GST-ready? Look for the CGST / SGST split, print and PDF, and reports you can hand to your CA.\n2. What happens when the internet drops? Check what works offline and what needs a connection.\n3. Can you bring your old data? Moving from Tally, Vyapar or manual books? Ask what migration help is included.\n4. Will it grow with you? A second counter or branch shouldn't mean switching software.\n\nSave this post for your next vendor demo, and send it to a friend who is about to buy.\n\nCodeLaksh ERP covers all four: GST-ready invoices, a desktop app that works offline, a data migration add-on (Rs. 2,999 one-time) and branches and staff users on higher plans. 7-day free trial on Starter and Growth.\n\nLink in bio or codelaksh.in/erp.",
+  "hashtags": [
+    "#BillingSoftware",
+    "#GSTBilling",
+    "#SmallBusinessIndia",
+    "#BusinessTips",
+    "#CodeLaksh"
+  ],
+  "cta": "Save this checklist, then see how CodeLaksh ERP answers it",
+  "link": "https://codelaksh.in/erp",
+  "show_link_in_caption": false,
+  "media": [
+    "2026-10-11-2-billing-software-checklist/slide-1.jpg",
+    "2026-10-11-2-billing-software-checklist/slide-2.jpg",
+    "2026-10-11-2-billing-software-checklist/slide-3.jpg",
+    "2026-10-11-2-billing-software-checklist/slide-4.jpg",
+    "2026-10-11-2-billing-software-checklist/slide-5.jpg",
+    "2026-10-11-2-billing-software-checklist/slide-6.jpg"
+  ],
+  "alt_text": [
+    "Title slide: Buying billing software? Ask these 4 questions first.",
+    "Question 1: Are the invoices actually GST-ready? Look for CGST and SGST split, print and PDF, and GST reports.",
+    "Question 2: What happens when the internet drops? Check what works offline and what needs a connection.",
+    "Question 3: Can you bring your old data from Tally, Vyapar or manual books?",
+    "Question 4: Will it grow with you? Ask about branches, users and pricing.",
+    "How CodeLaksh ERP answers: GST-ready invoices, offline desktop app, data migration add-on, branches and staff users on higher plans. codelaksh.in/erp"
+  ],
+  "tracking": {
+    "campaign": "erp_education_oct26",
+    "content": "carousel_buyer_checklist",
+    "pillar": "education"
+  }
+}

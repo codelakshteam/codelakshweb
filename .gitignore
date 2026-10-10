@@ -17,3 +17,6 @@ yarn-error.log*
 # env
 .env*.local
 /api/.env
+
+# instagram automation secrets (never commit)
+marketing/instagram/.env*

@@ -1,0 +1,54 @@
+name: Instagram automation
+on:
+  schedule:
+    - cron: '5 7,14 * * *'      # 12:35 and 19:35 IST: publish due approved posts
+    - cron: '30 3 * * *'        # 09:00 IST: token check
+    - cron: '30 4 * * 1'        # Monday 10:00 IST: analytics + weekly report
+  workflow_dispatch:
+    inputs:
+      task:
+        description: publish | token | analytics
+        default: publish
+permissions:
+  contents: write
+concurrency:
+  group: instagram-automation   # one run at a time: protects the ledger from double publishing
+  cancel-in-progress: false
+env:
+  IG_USER_ID: ${{ secrets.IG_USER_ID }}
+  IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+  META_APP_ID: ${{ secrets.META_APP_ID }}
+  META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
+  IG_PUBLISH_ENABLED: ${{ vars.IG_PUBLISH_ENABLED }}   # must be exactly "true" to post; otherwise dry run
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Tests
+        run: node --test marketing/instagram/tests/pipeline.test.mjs
+      - name: Decide task
+        id: t
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "task=${{ inputs.task }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.schedule }}" = "30 3 * * *" ]; then echo "task=token" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.schedule }}" = "30 4 * * 1" ]; then echo "task=analytics" >> $GITHUB_OUTPUT
+          else echo "task=publish" >> $GITHUB_OUTPUT; fi
+      - name: Token check
+        if: steps.t.outputs.task == 'token'
+        run: node marketing/instagram/src/check-token.mjs
+      - name: Publish due posts
+        if: steps.t.outputs.task == 'publish'
+        run: node marketing/instagram/src/publish.mjs --live
+      - name: Analytics and weekly report
+        if: steps.t.outputs.task == 'analytics'
+        run: node marketing/instagram/src/analytics.mjs --weekly
+      - name: Save ledger, metrics and reports
+        if: always()
+        run: |
+          git config user.name "codelaksh-instagram-bot"
+          git config user.email "noreply@users.noreply.github.com"
+          git add marketing/instagram/state marketing/instagram/reports
+          git diff --cached --quiet || (git commit -m "chore(instagram): update ledger and reports [skip ci]" && git pull --rebase && git push)

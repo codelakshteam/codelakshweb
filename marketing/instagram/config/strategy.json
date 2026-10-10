@@ -1,0 +1,13 @@
+{
+  "timezone": "Asia/Kolkata",
+  "postsPerDay": 2,
+  "defaultPublishTimesIST": ["12:30", "19:30"],
+  "publishTimeNote": "Starting assumptions for Indian SMB audiences (lunch break, evening). Replace with the account's own 'most active times' once Instagram Insights has data (weekly report ranks actual hours).",
+  "mediaBaseUrl": "https://codelaksh.in/social",
+  "maxHashtags": 5,
+  "captionMaxChars": 2200,
+  "allowedLinkHosts": ["codelaksh.in", "www.codelaksh.in", "kidodom.in", "play.google.com", "apps.apple.com"],
+  "verifiedPrices": ["Rs. 3,500", "Rs. 1,499", "Rs. 599", "Rs. 5,999", "Rs. 1,999", "Rs. 4,999", "Rs. 499", "Rs. 299", "Rs. 999", "Rs. 2,999"],
+  "blockedPhrases": ["guaranteed", "guarantee", "100%", "#1", "number one", "best in india", "best software", "lifetime free", "free forever", "risk-free", "trusted by", "customers love", "award", "viral", "lakh customers", "million users"],
+  "tokenWarnDays": 10
+}

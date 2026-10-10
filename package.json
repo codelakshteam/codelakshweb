@@ -7,7 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "contact-server": "node contact-server/index.js"
+    "contact-server": "node contact-server/index.js",
+    "ig:test": "node --test marketing/instagram/tests/pipeline.test.mjs",
+    "ig:dry-run": "node marketing/instagram/src/publish.mjs",
+    "ig:approve": "node marketing/instagram/src/approve.mjs",
+    "ig:token": "node marketing/instagram/src/check-token.mjs",
+    "ig:analytics": "node marketing/instagram/src/analytics.mjs --weekly"
   },
   "dependencies": {
     "next": "^14.2.18",

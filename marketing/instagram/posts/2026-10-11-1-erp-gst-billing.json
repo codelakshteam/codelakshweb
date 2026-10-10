@@ -1,0 +1,39 @@
+{
+  "id": "2026-10-11-1-erp-gst-billing",
+  "status": "draft",
+  "scheduled_at": "2026-10-11T12:30:00+05:30",
+  "format": "carousel",
+  "pillar": "product-demo",
+  "objective": "Product awareness for CodeLaksh ERP and free-trial sign-ups",
+  "audience": "Owners of retail shops, distributors, restaurants and hotels in India who bill on paper, Excel or unreliable internet",
+  "concept": "4-slide carousel built from real ERP screenshots: offline-first hook, GST invoices, mobile view (Growth plan), 7-day trial CTA",
+  "hook": "Your billing counter shouldn't stop when the internet does.",
+  "caption": "Your billing counter shouldn't stop when the internet does.\n\nCodeLaksh ERP runs fully offline on desktop, so you can keep making GST-ready invoices (CGST / SGST, print, PDF or share) even when the connection drops.\n\nOn the Growth plan, cloud sync and the Android app let you check revenue, dues and reports from your phone.\n\nBuilt in India for shops, distributors, restaurants and hotels:\n- GST-ready billing and barcode scanning\n- Inventory, purchases and accounting\n- 7-day free trial on Starter and Growth\n\nWant to try it? Tap the link in bio or visit codelaksh.in/erp. Growth starts at Rs. 599/month (excludes 18% GST).\n\nWhat slows your billing counter down the most? Tell us in the comments.",
+  "hashtags": [
+    "#GSTBilling",
+    "#BillingSoftware",
+    "#SmallBusinessIndia",
+    "#RetailIndia",
+    "#CodeLaksh"
+  ],
+  "cta": "Explore features and start the 7-day free trial",
+  "link": "https://codelaksh.in/erp",
+  "show_link_in_caption": false,
+  "media": [
+    "2026-10-11-1-erp-gst-billing/slide-1.jpg",
+    "2026-10-11-1-erp-gst-billing/slide-2.jpg",
+    "2026-10-11-1-erp-gst-billing/slide-3.jpg",
+    "2026-10-11-1-erp-gst-billing/slide-4.jpg"
+  ],
+  "alt_text": [
+    "CodeLaksh ERP desktop dashboard showing revenue, dues and quick actions, with the headline: Your billing counter shouldn't stop when the internet does.",
+    "CodeLaksh ERP GST invoice screen with CGST and SGST breakdown and a print preview. Headline: GST invoices in seconds.",
+    "Two CodeLaksh ERP mobile app screens, home dashboard and sales reports. Headline: Bill at the counter, check the numbers from your phone.",
+    "Pricing summary: Starter Rs. 3,500 one-time, Growth Rs. 599 per month, Restaurant / Hotel Pro Rs. 1,999 per month per outlet, excluding GST. 7-day free trial. codelaksh.in/erp"
+  ],
+  "tracking": {
+    "campaign": "erp_launch_oct26",
+    "content": "carousel_offline_gst",
+    "pillar": "product-demo"
+  }
+}
