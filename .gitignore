@@ -20,3 +20,4 @@ yarn-error.log*
 
 # instagram automation secrets (never commit)
 marketing/instagram/.env*
+__pycache__/
