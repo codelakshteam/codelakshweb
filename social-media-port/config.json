@@ -1,0 +1,6 @@
+{
+  "posts_per_run": 1,
+  "token_issued": "2026-10-10",
+  "token_warn_after_days": 45,
+  "token_lifetime_days": 60
+}
