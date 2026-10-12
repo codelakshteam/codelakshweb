@@ -18,7 +18,7 @@ const data = {
       email: SITE.email,
       telephone: SITE.phone,
       foundingDate: SITE.foundingYear,
-      sameAs: ['https://kidodom.in', ...SITE.profiles],
+      sameAs: ['https://kidodom.in', ...SITE.storeListings, ...SITE.profiles],
       founder: SITE.founders.map((f) => ({
         '@type': 'Person',
         name: f.name,
