@@ -1,4 +1,4 @@
-import { CONTENT_UPDATED, absoluteUrl } from '@/lib/seo';
+import { CONTENT_UPDATED, PAGE_UPDATED, absoluteUrl } from '@/lib/seo';
 import { services } from '@/lib/services';
 import { projects } from '@/lib/projects';
 
@@ -6,8 +6,12 @@ export const dynamic = 'force-static';
 
 // Only canonical, indexable pages. Add a new page here (or to lib/services.js / lib/projects.js) and it is listed.
 export default function sitemap() {
-  const lastModified = new Date(CONTENT_UPDATED);
-  const entry = (path, changeFrequency, priority) => ({ url: absoluteUrl(path), lastModified, changeFrequency, priority });
+  const entry = (path, changeFrequency, priority) => ({
+    url: absoluteUrl(path),
+    lastModified: new Date(PAGE_UPDATED[path] || CONTENT_UPDATED),
+    changeFrequency,
+    priority,
+  });
 
   return [
     entry('/', 'weekly', 1),

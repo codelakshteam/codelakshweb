@@ -18,6 +18,14 @@ const data = {
       email: SITE.email,
       telephone: SITE.phone,
       foundingDate: SITE.foundingYear,
+      sameAs: ['https://kidodom.in', ...SITE.profiles],
+      founder: SITE.founders.map((f) => ({
+        '@type': 'Person',
+        name: f.name,
+        jobTitle: f.jobTitle,
+        worksFor: { '@id': `${SITE.url}/#organization` },
+        ...(f.profiles.length && { sameAs: f.profiles }),
+      })),
       address: {
         '@type': 'PostalAddress',
         streetAddress: SITE.street,
