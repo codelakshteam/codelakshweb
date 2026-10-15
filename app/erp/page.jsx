@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import Chatbot from '@/components/Chatbot';
 import ErpSubnav from '@/components/ErpSubnav';
 import ErpPricing from '@/components/ErpPricing';
-import { pageMetadata } from '@/lib/seo';
+import { SITE, pageMetadata } from '@/lib/seo';
 import { PLAY_STORE_URL, APP_STORE_URL, erpHighlights, advancedFeatures, industryModules, mobileShots, desktopShots, addOns, erpFaqs } from '@/components/erpData';
 
 export const metadata = {
@@ -306,6 +306,9 @@ export default function ErpPage() {
               <PlayStoreButton />
               <a href="/contact" className="btn btn-outline">
                 Contact us
+              </a>
+              <a href={SITE.whatsappUrl} rel="noopener" className="btn btn-outline">
+                Ask on WhatsApp
               </a>
             </div>
           </div>

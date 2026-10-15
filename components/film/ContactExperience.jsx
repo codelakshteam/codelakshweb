@@ -77,6 +77,9 @@ export default function ContactExperience({ id = 'contact', heading = 'h2' }) {
                 <a href={`tel:${SITE.phone}`}>{SITE.phoneDisplay}</a>
               </li>
               <li>
+                <a href={SITE.whatsappUrl} rel="noopener">Chat on WhatsApp</a>
+              </li>
+              <li>
                 Sangram Nagar, {SITE.city} ({SITE.cityAlt}), {SITE.region}
               </li>
               <li>Second branch: Hadapsar, Pune, Maharashtra (same phone)</li>

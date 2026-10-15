@@ -58,6 +58,8 @@ export default function ContactPage() {
                 <br />
                 Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
                 <br />
+                WhatsApp: <a href={SITE.whatsappUrl} rel="noopener">{SITE.phoneDisplay}</a>
+                <br />
                 Second branch: Hadapsar, Pune, Maharashtra (same phone number)
                 <br />
                 <a href={SITE.mapUrl} rel="noopener">Get directions on Google Maps</a>
