@@ -3,6 +3,9 @@ import StructuredData from '@/components/StructuredData';
 import RevealOnScroll from '@/components/RevealOnScroll';
 import Runtime from '@/components/film/Runtime';
 import Analytics from '@/components/Analytics';
+import Script from 'next/script';
+
+const GA_ID = 'G-73GL7SLZY7';
 import './globals.css';
 import './film.css';
 
@@ -87,6 +90,8 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <StructuredData />
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+        <Script id="ga4" strategy="afterInteractive">{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${GA_ID}');`}</Script>
         {children}
         <RevealOnScroll />
         <Runtime />
