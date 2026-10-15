@@ -59,13 +59,15 @@ export default function ContactPage() {
                 Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
                 <br />
                 Second branch: Hadapsar, Pune, Maharashtra (same phone number)
+                <br />
+                <a href={SITE.mapUrl} rel="noopener">Get directions on Google Maps</a>
               </address>
               <p>
                 <strong>Business hours:</strong> Monday to Saturday, 10:00 AM to 7:00 PM (IST). We work with clients in{' '}
                 {SITE.city} and across India.
               </p>
               <p>
-                Read <a href="/about">about CodeLaksh</a> or see <a href="/locations/aurangabad">how we work from Chhatrapati Sambhajinagar (Aurangabad)</a>.
+                Read <a href="/about">about CodeLaksh</a> or see <a href="/locations/chhatrapati-sambhajinagar">how we work from Chhatrapati Sambhajinagar (Aurangabad)</a>.
               </p>
             </div>
             <div className="pg-prose">

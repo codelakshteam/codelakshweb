@@ -63,6 +63,9 @@ export default function Navigation() {
           ))}
         </nav>
         <SoundToggle />
+        <a href="/join" className="fm-nav-join">
+          Join now
+        </a>
         <a href="/contact" className="fm-nav-cta" data-cta>
           Start a project <span aria-hidden="true">&#8599;</span>
         </a>
@@ -83,6 +86,9 @@ export default function Navigation() {
           </ol>
         </nav>
         <div className="fm-sheet-foot">
+          <a href="/join" className="fm-sheet-join" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
+            Join now: become a sales partner
+          </a>
           <SoundToggle />
           <a href={`mailto:${SITE.email}`} tabIndex={open ? 0 : -1}>{SITE.email}</a>
           <a href={`tel:${SITE.phone}`} tabIndex={open ? 0 : -1}>{SITE.phoneDisplay}</a>

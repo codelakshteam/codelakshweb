@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { track } from '@/components/Analytics';
 import { play } from '@/lib/sound';
 import { SITE } from '@/lib/seo';
 import { contactTypes } from '@/lib/home';
@@ -43,6 +44,7 @@ export default function ContactExperience({ id = 'contact', heading = 'h2' }) {
       });
       if (!res.ok) throw new Error();
       setDone(true);
+      track('generate_lead', { form: 'contact', page_path: location.pathname });
       play('chime');
     } catch {
       setError(`Something went wrong. Please try again or email ${SITE.email}.`);

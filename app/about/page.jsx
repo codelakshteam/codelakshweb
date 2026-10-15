@@ -10,7 +10,7 @@ import { services } from '@/lib/services';
 export const metadata = pageMetadata({
   title: 'About CodeLaksh | Software Development Company',
   description:
-    'CodeLaksh is a software development company in Chhatrapati Sambhajinagar (Aurangabad), Maharashtra, building custom software, apps, AI and ERP for businesses since 2020.',
+    'CodeLaksh is a software development company in Chhatrapati Sambhajinagar (Aurangabad), Maharashtra, building custom software, apps, AI and ERP for businesses since 2022.',
   path: '/about',
 });
 
@@ -127,7 +127,7 @@ export default function AboutPage() {
               See what we have built on our <a href="/portfolio">portfolio</a>, including{' '}
               <a href="/portfolio/codelaksh-erp">CodeLaksh ERP</a> and <a href="/portfolio/kidodom">Kidodom</a>. Our office
               is at Sangram Nagar, {SITE.city}, {SITE.region}; read more about{' '}
-              <a href="/locations/aurangabad">our Chhatrapati Sambhajinagar (Aurangabad) location</a>. To discuss a project, visit the{' '}
+              <a href="/locations/chhatrapati-sambhajinagar">our Chhatrapati Sambhajinagar (Aurangabad) location</a>. To discuss a project, visit the{' '}
               <a href="/contact">contact page</a>, call <a href={`tel:${SITE.phone}`}>{SITE.phoneDisplay}</a> or email{' '}
               <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
             </p>

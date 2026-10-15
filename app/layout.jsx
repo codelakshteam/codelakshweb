@@ -2,6 +2,7 @@ import { Archivo, Inter, IBM_Plex_Mono } from 'next/font/google';
 import StructuredData from '@/components/StructuredData';
 import RevealOnScroll from '@/components/RevealOnScroll';
 import Runtime from '@/components/film/Runtime';
+import Analytics from '@/components/Analytics';
 import './globals.css';
 import './film.css';
 
@@ -89,6 +90,7 @@ export default function RootLayout({ children }) {
         {children}
         <RevealOnScroll />
         <Runtime />
+        <Analytics />
       </body>
     </html>
   );

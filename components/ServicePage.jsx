@@ -117,7 +117,7 @@ export default function ServicePage({ service }) {
             </div>
             <p className="pg-note">
               CodeLaksh is a software development company in {SITE.city} ({SITE.cityAlt}), {SITE.region}, India.{' '}
-              <a href="/about">About CodeLaksh</a> · <a href="/locations/aurangabad">Software development in Chhatrapati Sambhajinagar (Aurangabad)</a>
+              <a href="/about">About CodeLaksh</a> · <a href="/locations/chhatrapati-sambhajinagar">Software development in Chhatrapati Sambhajinagar (Aurangabad)</a>
             </p>
           </div>
         </section>

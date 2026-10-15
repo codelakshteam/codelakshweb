@@ -14,7 +14,7 @@ import ContactExperience from '@/components/film/ContactExperience';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
-  title: 'CodeLaksh | Software Development Company in India',
+  title: 'CodeLaksh | Software, App, ERP & AI Development Company in Chhatrapati Sambhajinagar',
   description:
     'CodeLaksh is a software development company in India delivering custom software, web and mobile app development, AI, machine learning, cloud, ERP and digital solutions for businesses.',
   path: '/',

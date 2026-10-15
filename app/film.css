@@ -633,3 +633,31 @@ html.mob .fm-sys-text, html.mob .fm-keys { transition-duration: 0.35s; }
 .fm-stores { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; font: 500 0.74rem var(--font-mono), monospace; letter-spacing: 0.12em; text-transform: uppercase; }
 .fm-stores a { color: var(--mut); text-decoration: none; border-bottom: 1px solid var(--line, rgba(255,255,255,.25)); padding-bottom: 2px; }
 .fm-stores a:hover { color: var(--fg); }
+
+/* ---------- phones/tablets: calm cards, solid in-flow ERP sub-nav (was a floating glass pill over the content) ---------- */
+@media (max-width: 900px) {
+  .service-card, .erp-plan, .erp-addon, .erp-faq-item, .erp-desktop-card, .pg-benefit, .pg-link-card { box-shadow: 0 1px 2px rgba(20, 20, 20, 0.06), 0 8px 18px -12px rgba(12, 40, 60, 0.22); }
+  .erp-subnav { position: static !important; padding: 0 !important; background: var(--metal); border-bottom: 1px solid var(--ln); pointer-events: auto; justify-content: flex-start; }
+  .erp-subnav-inner { display: flex !important; width: 100%; gap: 0 !important; padding: 0 8px !important; background: transparent !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; border: 0 !important; box-shadow: none !important; border-radius: 0 !important; -webkit-overflow-scrolling: touch; }
+  .erp-subnav a { padding: 14px 14px !important; font-size: 0.84rem; border-radius: 0 !important; border-bottom: 2px solid transparent; flex: 0 0 auto; }
+  .erp-subnav a.is-active { background: transparent !important; color: var(--fg) !important; border-bottom-color: var(--ac); }
+}
+
+/* phones: nav is always a solid bar (it was transparent/blended and vanished on light inner pages); tighter page tops */
+@media (max-width: 900px) {
+  .fm-nav, .fm-nav.is-top { mix-blend-mode: normal !important; background: #071a2b !important; color: #e9f3f3 !important; }
+  .fm-nav .fm-burger span { background: #e9f3f3 !important; }
+  .pg-hero, .erp-hero { padding-top: 84px; padding-bottom: 32px; }
+  .erp-section, .about, .services, .portfolio, .contact, .erp-teaser, .kidodom { padding-top: 48px; padding-bottom: 48px; }
+  .pg-title { margin-top: 10px; }
+}
+
+/* "Join now" -> /join (sales partner program) */
+.fm-nav-join { font: 600 0.74rem var(--font-mono), monospace; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 14px; border: 1px solid currentColor; border-radius: 2px; white-space: nowrap; transition: background 0.3s, color 0.3s; }
+.fm-nav-join:hover { background: currentColor; }
+.fm-nav-join:hover { color: inherit; }
+.fm-sheet-join { display: block; padding: 14px 18px; margin-bottom: 14px; border: 1px solid currentColor; text-align: center; font: 600 0.8rem var(--font-mono), monospace; letter-spacing: 0.14em; text-transform: uppercase; }
+@media (max-width: 900px) {
+  .fm-nav-join { margin-left: auto; margin-right: 6px; padding: 7px 10px; font-size: 0.68rem; }
+  .fm-nav .fm-sound { margin-left: 0; }
+}

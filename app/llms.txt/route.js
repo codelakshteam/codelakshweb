@@ -25,7 +25,7 @@ export function GET() {
     `- [About](${absoluteUrl('/about')}): who CodeLaksh is and how it works.`,
     `- [Technology](${absoluteUrl('/technology')}): languages, frameworks, cloud and AI providers used.`,
     `- [Portfolio](${absoluteUrl('/portfolio')}): products and case studies.`,
-    `- [Aurangabad location](${absoluteUrl('/locations/aurangabad')}): office in ${SITE.city}.`,
+    `- [Chhatrapati Sambhajinagar location](${absoluteUrl('/locations/chhatrapati-sambhajinagar')}): office in ${SITE.city}.`,
     `- [Contact](${absoluteUrl('/contact')}): how to reach the team.`,
     '',
     '## Optional',

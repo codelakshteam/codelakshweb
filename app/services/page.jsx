@@ -80,7 +80,7 @@ export default function ServicesPage() {
               Not sure which service you need? Describe the problem on our <a href="/contact">contact page</a> and we
               will recommend a starting point. You can also read about <a href="/about">CodeLaksh</a>, see{' '}
               <a href="/portfolio">our work</a>, or learn about{' '}
-              <a href="/locations/aurangabad">software development in Chhatrapati Sambhajinagar (Aurangabad)</a>.
+              <a href="/locations/chhatrapati-sambhajinagar">software development in Chhatrapati Sambhajinagar (Aurangabad)</a>.
             </p>
           </div>
         </section>

@@ -26,6 +26,8 @@ const data = {
         worksFor: { '@id': `${SITE.url}/#organization` },
         ...(f.profiles.length && { sameAs: f.profiles }),
       })),
+      hasMap: SITE.mapUrl,
+      geo: { '@type': 'GeoCoordinates', latitude: SITE.geo.latitude, longitude: SITE.geo.longitude },
       address: {
         '@type': 'PostalAddress',
         streetAddress: SITE.street,

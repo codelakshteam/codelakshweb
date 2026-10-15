@@ -1,6 +1,7 @@
 import { CONTENT_UPDATED, PAGE_UPDATED, absoluteUrl } from '@/lib/seo';
 import { services } from '@/lib/services';
 import { projects } from '@/lib/projects';
+import { careers } from '@/lib/careers';
 
 export const dynamic = 'force-static';
 
@@ -22,8 +23,11 @@ export default function sitemap() {
     entry('/technology', 'monthly', 0.6),
     entry('/portfolio', 'monthly', 0.7),
     ...projects.map((project) => entry(`/portfolio/${project.slug}`, 'monthly', 0.6)),
-    entry('/locations/aurangabad', 'monthly', 0.6),
+    entry('/locations/chhatrapati-sambhajinagar', 'monthly', 0.6),
     entry('/contact', 'monthly', 0.7),
+    entry('/join', 'monthly', 0.6),
+    entry('/careers', 'weekly', 0.6),
+    ...careers.map((c) => entry(`/careers/${c.slug}`, 'weekly', 0.6)),
     entry('/privacy', 'yearly', 0.3),
   ];
 }

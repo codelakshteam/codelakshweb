@@ -17,3 +17,7 @@ yarn-error.log*
 # env
 .env*.local
 /api/.env
+
+# applications data
+/api/data/
+/api/node_modules/

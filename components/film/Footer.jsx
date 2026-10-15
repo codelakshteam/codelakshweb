@@ -24,7 +24,8 @@ export default function Footer() {
             <a href="/technology">Technology</a>
             <a href="/erp">CodeLaksh ERP</a>
             <a href="/portfolio/kidodom">Kidodom app</a>
-            <a href="/locations/aurangabad">Studio location</a>
+            <a href="/locations/chhatrapati-sambhajinagar">Studio location</a>
+            <a href="/careers">Careers</a>
             <a href="/contact">Contact</a>
             <a href="/privacy">Privacy Policy</a>
           </nav>
